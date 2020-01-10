@@ -33,8 +33,8 @@ const checkSignInStatus = () => {
   if ($('#username').val() === 'a' && $('#password').val() === 'a') {
   domUpdates.displayCustomerWelcomeScreen();
   $('.past-future-container').removeClass('hidden');
+  $('.book-a-cabin-container').removeClass('hidden');
   $('.log-out-button').removeClass('hidden');
-  $('.book-a-cabin-button').removeClass('hidden');
   $('.landing-container').addClass('hidden');
   } else {
     $('.user-validation').removeClass('hidden')
