@@ -1,11 +1,11 @@
 import $ from 'jquery';
 import './css/base.scss';
-import './images/turing-logo.png'
+import './css/customer_styles.scss';
+import './css/manager_styles.scss';
 import hotel from './hotel.js';
 import customer from './customer.js';
 import manager from './manager.js';
-import domUpdates from './domUpdates';
-
+import domUpdates from './domUpdates.js';
 
 // fetch dataset
 const fetchUserData = () => {
@@ -29,4 +29,20 @@ const getData = () => {
     .catch((error) => window.alert(`error: ${error}.`))
 }
 
+const checkSignInStatus = () => {
+  if ($('#username').val() === 'a' && $('#password').val() === 'a') {
+  domUpdates.displayCustomerWelcomeScreen();
+  $('.past-future-container').removeClass('hidden');
+  $('.log-out-button').removeClass('hidden');
+  $('.book-a-cabin-button').removeClass('hidden');
+  $('.landing-container').addClass('hidden');
+  } else {
+    $('.user-validation').removeClass('hidden')
+  }
+}
+
+// On Page Load
 getData()
+
+// Event Listeners
+$('.sign-in-button').click(checkSignInStatus);

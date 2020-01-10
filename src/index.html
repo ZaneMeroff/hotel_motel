@@ -1,13 +1,77 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <title>Webpack Starter Kit</title>
+    <title>Cabin in the Woods</title>
+    <link href="https://fonts.googleapis.com/css?family=Special+Elite&display=swap" rel="stylesheet">
   </head>
   <body>
-    <h1>Webpack Starter Kit</h1>
 
-    <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
+    <main>
 
-    <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
+      <nav>
+        <button type="button" class="book-a-cabin-button hidden">book a cabin</button>
+        <h1 class="h1-heading">Cabin in the Woods</h1>
+        <h2 class="h2-heading">a JW Marriott Product</h2>
+        <button type="button" class="log-out-button hidden">logout</button>
+      </nav>
+
+
+      <section class="main-area">
+
+        <div class="past-future-container hidden">
+          <div class="past-future-heading">
+            <h2>past & future reservations</h2>
+          </div>
+          <div class="past-future-card-area">
+            <div class="past-future-card">
+              <h2>Cabin: #7</h2>
+              <h2>Date: 12/05/19</h2>
+            </div>
+            <div class="past-future-card">
+              <h2>Cabin: #2</h2>
+              <h2>Date: 12/16/19</h2>
+            </div>
+            <div class="past-future-card">
+              <h2>Cabin: #9</h2>
+              <h2>Date: 12/02/19</h2>
+            </div>
+            <div class="past-future-card">
+              <h2>Cabin: #7</h2>
+              <h2>Date: 12/05/19</h2>
+            </div>
+            <div class="past-future-card">
+              <h2>Cabin: #2</h2>
+              <h2>Date: 12/16/19</h2>
+            </div>
+            <div class="past-future-card">
+              <h2>Cabin: #9</h2>
+              <h2>Date: 12/02/19</h2>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="landing-container">
+          <div class="sign-in-container">
+            <div class="sign-in-block">
+              <label for="username">username:</label>
+              <input id="username" type="text">
+            </div>
+            <div class="sign-in-block">
+              <label for="password">password:</label>
+              <input id="password" type="text">
+            </div>
+          </div>
+          <button type="button" class="sign-in-button">sign in</button>
+          <p class="user-validation hidden">*enter a valid username and/or password</p>
+        </div>
+
+
+      </section>
+
+    </main>
+
+
   </body>
 </html>
