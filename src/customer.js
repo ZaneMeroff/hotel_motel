@@ -1,5 +1,12 @@
 import $ from 'jquery';
 
+class Customer {
+  constructor(id, name) {
+     this.id = id;
+     this.name = name;
+     this.upcomingBookings = null;
+   }
+}
 
 
 
@@ -9,10 +16,4 @@ import $ from 'jquery';
 
 
 
-
-
-
-
-
-
-export default 'customer.js';
+export default Customer;
