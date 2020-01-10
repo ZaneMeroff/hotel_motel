@@ -1,4 +1,12 @@
 import $ from 'jquery';
+import Customer from './customer.js';
+
+class Manager extends Customer {
+  constructor(id, name) {
+    super(id, name);
+
+  }
+}
 
 
 
@@ -11,5 +19,4 @@ import $ from 'jquery';
 
 
 
-
-export default 'manager.js';
+export default Manager;
