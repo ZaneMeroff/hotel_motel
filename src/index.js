@@ -31,13 +31,22 @@ const getData = () => {
 
 const checkSignInStatus = () => {
   if ($('#username').val() === 'a' && $('#password').val() === 'a') {
-  domUpdates.displayCustomerWelcomeScreen();
-  $('.past-future-container').removeClass('hidden');
-  $('.book-a-cabin-container').removeClass('hidden');
-  $('.log-out-button').removeClass('hidden');
-  $('.landing-container').addClass('hidden');
+    domUpdates.displayCustomerWelcomeScreen();
+    hideOrShowElement('show', '.past-future-container')
+    hideOrShowElement('show', '.book-a-cabin-container')
+    hideOrShowElement('show', '.log-out-button')
+    hideOrShowElement('show', '.user-validation')
+    hideOrShowElement('hide', '.landing-container')
   } else {
-    $('.user-validation').removeClass('hidden')
+    hideOrShowElement('show', '.user-validation')
+  }
+}
+
+const hideOrShowElement = (command, element) => {
+  if (command === 'hide') {
+    $(`${element}`).addClass('hidden');
+  } else if (command === 'show'){
+    $(`${element}`).removeClass('hidden');
   }
 }
 

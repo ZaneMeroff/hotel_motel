@@ -47,6 +47,7 @@ nav {
   width: 30%;
   height: 160px;
   border-radius: 5px;
+  box-shadow: 3px 3px 10px 3px #000000;
 }
 
 #username,
@@ -72,6 +73,8 @@ label {
   margin: 3%;
 }
 
+.book-this-cabin-button,
+.new-search-button,
 .log-out-button,
 .sign-in-button {
   color: #000000;
@@ -81,16 +84,34 @@ label {
   border-radius: 5px;
 }
 
+.book-this-cabin-button {
+  width: 25%;
+  height: 30%;
+  margin: 10% 3% 3% 17%;
+}
+
+.log-out-button:hover,
+.sign-in-button:hover {
+  cursor: pointer;
+}
+
+.new-search-button,
 .log-out-button {
   position: absolute;
-  top: 4%;
+  top: 3%;
   right: 4%;
   width: 70px;
   height: 30px;
 }
 
+.new-search-button {
+  right: 0%;
+  left: 4%;
+}
+
 .user-validation {
   margin: 2%;
+  background-color: rgba(139, 137, 132, 0.9);
 }
 
 .hidden {
