@@ -11,9 +11,9 @@ const domUpdates = {
      location.reload();
    }),
 
-   bookACabin: $('.book-a-cabin-button').on('click', () => {
-      $('.past-future-container').addClass('hidden');
-   }),
+   // bookACabin: $('.book-a-cabin-button').on('click', () => {
+   //    $('.past-future-container').addClass('hidden');
+   // }),
 
 
 
