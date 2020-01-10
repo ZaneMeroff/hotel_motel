@@ -49,7 +49,8 @@ nav {
   border-radius: 5px;
 }
 
-input {
+#username,
+#password {
   color: black;
   width: 80%;
   height: 60%;
@@ -71,7 +72,6 @@ label {
   margin: 3%;
 }
 
-.book-a-cabin-button,
 .log-out-button,
 .sign-in-button {
   color: #000000;
@@ -86,14 +86,6 @@ label {
   top: 4%;
   right: 4%;
   width: 70px;
-  height: 30px;
-}
-
-.book-a-cabin-button {
-  position: absolute;
-  top: 4%;
-  left: 4%;
-  width: 100px;
   height: 30px;
 }
 
