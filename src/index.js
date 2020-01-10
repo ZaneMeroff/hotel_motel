@@ -1,10 +1,11 @@
 import $ from 'jquery';
 import './css/base.scss';
-import './images/turing-logo.png'
+import './css/customer_styles.scss';
+import './css/manager_styles.scss';
 import hotel from './hotel.js';
 import customer from './customer.js';
 import manager from './manager.js';
-import domUpdates from './domUpdates';
+import domUpdates from './domUpdates.js';
 
 
 // fetch dataset
