@@ -30,19 +30,25 @@ const getData = () => {
 }
 
 const checkSignInStatus = () => {
-  if ($('#username').val() === 'a' && $('#password').val() === 'a') {
+  if ($('#username').val() === 'c' && $('#password').val() === 'c') {
     domUpdates.displayCustomerWelcomeScreen();
-    hideOrShowElement('show', '.past-future-container')
-    hideOrShowElement('show', '.book-a-cabin-container')
-    hideOrShowElement('show', '.log-out-button')
-    hideOrShowElement('show', '.user-validation')
-    hideOrShowElement('hide', '.landing-container')
+    hideOrShowElement('show', '.past-future-container');
+    hideOrShowElement('show', '.book-a-cabin-container');
+    hideOrShowElement('show', '.log-out-button');
+    hideOrShowElement('show', '.user-validation');
+    hideOrShowElement('hide', '.landing-container');
+  } else if ($('#username').val() === 'm' && $('#password').val() === 'm') {
+    domUpdates.displayManagerDashboard();
+    hideOrShowElement('hide', '.landing-container');
+    hideOrShowElement('show', '.log-out-button');
+    hideOrShowElement('show', '.search-users-container');
+    hideOrShowElement('show', '.manager-available-res-container');
   } else {
-    hideOrShowElement('show', '.user-validation')
+    hideOrShowElement('show', '.user-validation');
   }
 }
 
-const hideOrShowElement = (command, element) => {
+export const hideOrShowElement = (command, element) => {
   if (command === 'hide') {
     $(`${element}`).addClass('hidden');
   } else if (command === 'show'){

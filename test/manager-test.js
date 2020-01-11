@@ -1,7 +1,7 @@
 const chai = require("chai");
 const expect = chai.expect;
-import Customer from './src/customer';
-import Manager from './src/manager';
+import Customer from '../src/customer';
+import Manager from '../src/manager';
 
 describe('Manager', () => {
   let manager1;
