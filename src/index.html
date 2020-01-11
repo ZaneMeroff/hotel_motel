@@ -1,250 +1,344 @@
 <!DOCTYPE html>
 <html lang="en-US">
-  <head>
-    <title>Cabin in the Woods</title>
-    <link href="https://fonts.googleapis.com/css?family=Special+Elite&display=swap" rel="stylesheet">
-  </head>
-  <body>
 
-    <main>
+<head>
+  <title>Cabin in the Woods</title>
+  <link href="https://fonts.googleapis.com/css?family=Special+Elite&display=swap" rel="stylesheet">
+</head>
 
-      <nav>
-        <!-- * remember to unhide new search button -->
-        <button type="button" class="new-search-button hidden">new search</button>
-        <h1 class="h1-heading">Cabin in the Woods</h1>
-        <h2 class="h2-heading">a JW Marriott Product</h2>
-        <button type="button" class="log-out-button hidden">logout</button>
-      </nav>
+<body>
+
+  <main>
+
+    <nav>
+      <!-- * remember to unhide new search button -->
+      <button type="button" class="new-search-button hidden">new search</button>
+      <h1 class="h1-heading">Cabin in the Woods</h1>
+      <h2 class="h2-heading">a JW Marriott Product</h2>
+      <button type="button" class="log-out-button hidden">logout</button>
+    </nav>
 
 
-      <section class="main-area">
+    <section class="main-area">
 
-        <div class="past-future-container hidden">
-          <div class="past-future-heading">
-            <h2>past & future reservations</h2>
+      <div class="past-future-container hidden">
+        <div class="past-future-heading">
+          <h2>past & future reservations</h2>
+        </div>
+        <div class="past-future-card-area">
+          <div class="past-future-card">
+            <h2>Cabin: #7</h2>
+            <h2>Date: 12/05/19</h2>
           </div>
-          <div class="past-future-card-area">
-            <div class="past-future-card">
+          <div class="past-future-card">
+            <h2>Cabin: #2</h2>
+            <h2>Date: 12/16/19</h2>
+          </div>
+          <div class="past-future-card">
+            <h2>Cabin: #9</h2>
+            <h2>Date: 12/02/19</h2>
+          </div>
+          <div class="past-future-card">
+            <h2>Cabin: #7</h2>
+            <h2>Date: 12/05/19</h2>
+          </div>
+          <div class="past-future-card">
+            <h2>Cabin: #2</h2>
+            <h2>Date: 12/16/19</h2>
+          </div>
+          <div class="past-future-card">
+            <h2>Cabin: #9</h2>
+            <h2>Date: 12/02/19</h2>
+          </div>
+          <div class="past-future-card">
+            <h2>Cabin: #7</h2>
+            <h2>Date: 12/05/19</h2>
+          </div>
+          <div class="past-future-card">
+            <h2>Cabin: #2</h2>
+            <h2>Date: 12/16/19</h2>
+          </div>
+          <div class="past-future-card">
+            <h2>Cabin: #9</h2>
+            <h2>Date: 12/02/19</h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="book-a-cabin-container hidden">
+        <div class="past-future-heading">
+          <h2>book a new reservation</h2>
+        </div>
+        <div class="select-dates-container">
+          <select class="possible-dates-dropdown dates">
+            <option>01/01/20</option>
+            <option>01/02/20</option>
+            <option>01/03/20</option>
+          </select>
+          <button type="button" class="select-date-button dates">select date</button><br>
+        </div>
+        <div class="radio-button-container">
+          <input type="radio" class="radio-button">suite<br>
+          <input type="radio" class="radio-button">single room<br>
+          <input type="radio" class="radio-button">residential suite<br>
+          <input type="radio" class="radio-button">junior suite<br>
+        </div>
+      </div>
+
+      <div class="landing-container">
+        <div class="sign-in-container">
+          <div class="sign-in-block">
+            <label for="username">username:</label>
+            <input id="username" type="text">
+          </div>
+          <div class="sign-in-block">
+            <label for="password">password:</label>
+            <input id="password" type="text">
+          </div>
+        </div>
+        <button type="button" class="sign-in-button">sign in</button>
+        <p class="user-validation hidden">*enter a valid username and/or password</p>
+      </div>
+
+      <div class="search-users-container hidden">
+        <h2 class="search-user-database-heading">search user database</h2>
+        <input type="text" class="user-search-input" placeholder="enter user's name">
+        <button type="button" class="search-users-button">search</button>
+        <h2>today's total occupancy:</h2>
+        <h2 class="total-occupancy">85%</h2>
+      </div>
+
+      <div class="available-res-container hidden">
+        <div class="past-future-heading">
+          <h2>available bookings</h2>
+        </div>
+        <div class="past-future-card-area">
+          <div class="available-res-card">
+            <div class="cabin-stats-container">
+              <h2>Cabin: #7</h2>
+              <h2>Number of Beds: 2</h2>
+              <h2>Bed Size: queen</h2>
+              <h2>Bidet: true</h2>
+              <h2>Cost: $203.29</h2>
+            </div>
+            <button type="button" class="book-this-cabin-button">book this cabin</button>
+          </div>
+          <div class="available-res-card">
+            <div class="cabin-stats-container">
+              <h2>Cabin: #12</h2>
+              <h2>Number of Beds: 1</h2>
+              <h2>Bed Size: king</h2>
+              <h2>Bidet: false</h2>
+              <h2>Cost: $198.43</h2>
+            </div>
+            <button type="button" class="book-this-cabin-button">book this cabin</button>
+          </div>
+          <div class="available-res-card">
+            <div class="cabin-stats-container">
+              <h2>Cabin: #16</h2>
+              <h2>Number of Beds: 2</h2>
+              <h2>Bed Size: queen</h2>
+              <h2>Bidet: true</h2>
+              <h2>Cost: $134.26</h2>
+            </div>
+            <button type="button" class="book-this-cabin-button">book this cabin</button>
+          </div>
+          <div class="available-res-card">
+            <div class="cabin-stats-container">
+              <h2>Cabin: #7</h2>
+              <h2>Number of Beds: 2</h2>
+              <h2>Bed Size: queen</h2>
+              <h2>Bidet: true</h2>
+              <h2>Cost: $203.29</h2>
+            </div>
+            <button type="button" class="book-this-cabin-button">book this cabin</button>
+          </div>
+          <div class="available-res-card">
+            <div class="cabin-stats-container">
+              <h2>Cabin: #12</h2>
+              <h2>Number of Beds: 1</h2>
+              <h2>Bed Size: king</h2>
+              <h2>Bidet: false</h2>
+              <h2>Cost: $198.43</h2>
+            </div>
+            <button type="button" class="book-this-cabin-button">book this cabin</button>
+          </div>
+          <div class="available-res-card">
+            <div class="cabin-stats-container">
+              <h2>Cabin: #16</h2>
+              <h2>Number of Beds: 2</h2>
+              <h2>Bed Size: queen</h2>
+              <h2>Bidet: true</h2>
+              <h2>Cost: $134.26</h2>
+            </div>
+            <button type="button" class="book-this-cabin-button">book this cabin</button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="manager-available-res-container hidden">
+        <div class="past-future-heading">
+          <h2>available bookings today</h2>
+        </div>
+        <div class="past-future-card-area">
+          <div class="available-res-card">
+            <div class="cabin-stats-container">
+              <h2>Cabin: #7</h2>
+              <h2>Number of Beds: 2</h2>
+              <h2>Bed Size: queen</h2>
+              <h2>Bidet: true</h2>
+              <h2>Cost: $203.29</h2>
+            </div>
+          </div>
+          <div class="available-res-card">
+            <div class="cabin-stats-container">
+              <h2>Cabin: #12</h2>
+              <h2>Number of Beds: 1</h2>
+              <h2>Bed Size: king</h2>
+              <h2>Bidet: false</h2>
+              <h2>Cost: $198.43</h2>
+            </div>
+          </div>
+          <div class="available-res-card">
+            <div class="cabin-stats-container">
+              <h2>Cabin: #16</h2>
+              <h2>Number of Beds: 2</h2>
+              <h2>Bed Size: queen</h2>
+              <h2>Bidet: true</h2>
+              <h2>Cost: $134.26</h2>
+            </div>
+          </div>
+          <div class="available-res-card">
+            <div class="cabin-stats-container">
+              <h2>Cabin: #7</h2>
+              <h2>Number of Beds: 2</h2>
+              <h2>Bed Size: queen</h2>
+              <h2>Bidet: true</h2>
+              <h2>Cost: $203.29</h2>
+            </div>
+          </div>
+          <div class="available-res-card">
+            <div class="cabin-stats-container">
+              <h2>Cabin: #12</h2>
+              <h2>Number of Beds: 1</h2>
+              <h2>Bed Size: king</h2>
+              <h2>Bidet: false</h2>
+              <h2>Cost: $198.43</h2>
+            </div>
+          </div>
+          <div class="available-res-card">
+            <div class="cabin-stats-container">
+              <h2>Cabin: #16</h2>
+              <h2>Number of Beds: 2</h2>
+              <h2>Bed Size: queen</h2>
+              <h2>Bidet: true</h2>
+              <h2>Cost: $134.26</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="past-future-container-manager hidden">
+        <div class="past-future-heading">
+          <h2>past & future reservations</h2>
+        </div>
+        <div class="past-future-card-area">
+          <div class="manager-past-future-card">
+            <div>
               <h2>Cabin: #7</h2>
               <h2>Date: 12/05/19</h2>
             </div>
-            <div class="past-future-card">
-              <h2>Cabin: #2</h2>
-              <h2>Date: 12/16/19</h2>
+            <div>
+              <button type="button" class="delete-booking-button">delete</button>
             </div>
-            <div class="past-future-card">
-              <h2>Cabin: #9</h2>
-              <h2>Date: 12/02/19</h2>
+          </div>
+          <div class="manager-past-future-card">
+            <div>
+              <h2>Cabin: #16</h2>
+              <h2>Date: 12/17/19</h2>
             </div>
-            <div class="past-future-card">
+            <div>
+              <button type="button" class="delete-booking-button">delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="make-booking-for-this-guest-container hidden">
+        <div class="past-future-heading">
+          <h2>make booking for this guest</h2>
+        </div>
+        <div class="past-future-card-area">
+          <div class="available-res-card">
+            <div class="cabin-stats-container">
               <h2>Cabin: #7</h2>
-              <h2>Date: 12/05/19</h2>
+              <h2>Number of Beds: 2</h2>
+              <h2>Bed Size: queen</h2>
+              <h2>Bidet: true</h2>
+              <h2>Cost: $203.29</h2>
             </div>
-            <div class="past-future-card">
-              <h2>Cabin: #2</h2>
-              <h2>Date: 12/16/19</h2>
+            <button type="button" class="book-this-cabin-button">book this cabin</button>
+          </div>
+          <div class="available-res-card">
+            <div class="cabin-stats-container">
+              <h2>Cabin: #12</h2>
+              <h2>Number of Beds: 1</h2>
+              <h2>Bed Size: king</h2>
+              <h2>Bidet: false</h2>
+              <h2>Cost: $198.43</h2>
             </div>
-            <div class="past-future-card">
-              <h2>Cabin: #9</h2>
-              <h2>Date: 12/02/19</h2>
+            <button type="button" class="book-this-cabin-button">book this cabin</button>
+          </div>
+          <div class="available-res-card">
+            <div class="cabin-stats-container">
+              <h2>Cabin: #16</h2>
+              <h2>Number of Beds: 2</h2>
+              <h2>Bed Size: queen</h2>
+              <h2>Bidet: true</h2>
+              <h2>Cost: $134.26</h2>
             </div>
-            <div class="past-future-card">
+            <button type="button" class="book-this-cabin-button">book this cabin</button>
+          </div>
+          <div class="available-res-card">
+            <div class="cabin-stats-container">
               <h2>Cabin: #7</h2>
-              <h2>Date: 12/05/19</h2>
+              <h2>Number of Beds: 2</h2>
+              <h2>Bed Size: queen</h2>
+              <h2>Bidet: true</h2>
+              <h2>Cost: $203.29</h2>
             </div>
-            <div class="past-future-card">
-              <h2>Cabin: #2</h2>
-              <h2>Date: 12/16/19</h2>
+            <button type="button" class="book-this-cabin-button">book this cabin</button>
+          </div>
+          <div class="available-res-card">
+            <div class="cabin-stats-container">
+              <h2>Cabin: #12</h2>
+              <h2>Number of Beds: 1</h2>
+              <h2>Bed Size: king</h2>
+              <h2>Bidet: false</h2>
+              <h2>Cost: $198.43</h2>
             </div>
-            <div class="past-future-card">
-              <h2>Cabin: #9</h2>
-              <h2>Date: 12/02/19</h2>
+            <button type="button" class="book-this-cabin-button">book this cabin</button>
+          </div>
+          <div class="available-res-card">
+            <div class="cabin-stats-container">
+              <h2>Cabin: #16</h2>
+              <h2>Number of Beds: 2</h2>
+              <h2>Bed Size: queen</h2>
+              <h2>Bidet: true</h2>
+              <h2>Cost: $134.26</h2>
             </div>
+            <button type="button" class="book-this-cabin-button">book this cabin</button>
           </div>
         </div>
-
-        <div class="book-a-cabin-container hidden">
-          <div class="past-future-heading">
-            <h2>book a new reservation</h2>
-          </div>
-          <div class="select-dates-container">
-            <select class="possible-dates-dropdown dates">
-              <option>01/01/20</option>
-              <option>01/02/20</option>
-              <option>01/03/20</option>
-            </select>
-            <button type="button" class="select-date-button dates">select date</button><br>
-          </div>
-          <div class="radio-button-container">
-            <input type="radio" class="radio-button">suite<br>
-            <input type="radio" class="radio-button">single room<br>
-            <input type="radio" class="radio-button">residential suite<br>
-            <input type="radio" class="radio-button">junior suite<br>
-          </div>
-        </div>
-
-        <div class="landing-container">
-          <div class="sign-in-container">
-            <div class="sign-in-block">
-              <label for="username">username:</label>
-              <input id="username" type="text">
-            </div>
-            <div class="sign-in-block">
-              <label for="password">password:</label>
-              <input id="password" type="text">
-            </div>
-          </div>
-          <button type="button" class="sign-in-button">sign in</button>
-          <p class="user-validation hidden">*enter a valid username and/or password</p>
-        </div>
-
-        <div class="search-users-container hidden">
-            <h2 class="search-user-database-heading">search user database</h2>
-            <input type="text" class="user-search-input" placeholder="enter user's name">
-            <button type="button" class="search-users-button">search</button>
-            <h2>today's total occupancy:</h2>
-            <h2 class="total-occupancy">85%</h2>
-        </div>
-
-        <div class="available-res-container hidden">
-          <div class="past-future-heading">
-            <h2>available bookings</h2>
-          </div>
-          <div class="past-future-card-area">
-            <div class="available-res-card">
-              <div class="cabin-stats-container">
-                <h2>Cabin: #7</h2>
-                <h2>Number of Beds: 2</h2>
-                <h2>Bed Size: queen</h2>
-                <h2>Bidet: true</h2>
-                <h2>Cost: $203.29</h2>
-              </div>
-              <button type="button" class="book-this-cabin-button">book this cabin</button>
-            </div>
-            <div class="available-res-card">
-              <div class="cabin-stats-container">
-                <h2>Cabin: #12</h2>
-                <h2>Number of Beds: 1</h2>
-                <h2>Bed Size: king</h2>
-                <h2>Bidet: false</h2>
-                <h2>Cost: $198.43</h2>
-              </div>
-              <button type="button" class="book-this-cabin-button">book this cabin</button>
-            </div>
-            <div class="available-res-card">
-              <div class="cabin-stats-container">
-                <h2>Cabin: #16</h2>
-                <h2>Number of Beds: 2</h2>
-                <h2>Bed Size: queen</h2>
-                <h2>Bidet: true</h2>
-                <h2>Cost: $134.26</h2>
-              </div>
-              <button type="button" class="book-this-cabin-button">book this cabin</button>
-            </div>
-            <div class="available-res-card">
-              <div class="cabin-stats-container">
-                <h2>Cabin: #7</h2>
-                <h2>Number of Beds: 2</h2>
-                <h2>Bed Size: queen</h2>
-                <h2>Bidet: true</h2>
-                <h2>Cost: $203.29</h2>
-              </div>
-              <button type="button" class="book-this-cabin-button">book this cabin</button>
-            </div>
-            <div class="available-res-card">
-              <div class="cabin-stats-container">
-                <h2>Cabin: #12</h2>
-                <h2>Number of Beds: 1</h2>
-                <h2>Bed Size: king</h2>
-                <h2>Bidet: false</h2>
-                <h2>Cost: $198.43</h2>
-              </div>
-              <button type="button" class="book-this-cabin-button">book this cabin</button>
-            </div>
-            <div class="available-res-card">
-              <div class="cabin-stats-container">
-                <h2>Cabin: #16</h2>
-                <h2>Number of Beds: 2</h2>
-                <h2>Bed Size: queen</h2>
-                <h2>Bidet: true</h2>
-                <h2>Cost: $134.26</h2>
-              </div>
-              <button type="button" class="book-this-cabin-button">book this cabin</button>
-            </div>
-          </div>
-        </div>
+      </div>
 
 
-            <div class="manager-available-res-container hidden">
-              <div class="past-future-heading">
-                <h2>available bookings</h2>
-              </div>
-              <div class="past-future-card-area">
-                <div class="available-res-card">
-                  <div class="cabin-stats-container">
-                    <h2>Cabin: #7</h2>
-                    <h2>Number of Beds: 2</h2>
-                    <h2>Bed Size: queen</h2>
-                    <h2>Bidet: true</h2>
-                    <h2>Cost: $203.29</h2>
-                  </div>
-                </div>
-                <div class="available-res-card">
-                  <div class="cabin-stats-container">
-                    <h2>Cabin: #12</h2>
-                    <h2>Number of Beds: 1</h2>
-                    <h2>Bed Size: king</h2>
-                    <h2>Bidet: false</h2>
-                    <h2>Cost: $198.43</h2>
-                  </div>
-                </div>
-                <div class="available-res-card">
-                  <div class="cabin-stats-container">
-                    <h2>Cabin: #16</h2>
-                    <h2>Number of Beds: 2</h2>
-                    <h2>Bed Size: queen</h2>
-                    <h2>Bidet: true</h2>
-                    <h2>Cost: $134.26</h2>
-                  </div>
-                </div>
-                <div class="available-res-card">
-                  <div class="cabin-stats-container">
-                    <h2>Cabin: #7</h2>
-                    <h2>Number of Beds: 2</h2>
-                    <h2>Bed Size: queen</h2>
-                    <h2>Bidet: true</h2>
-                    <h2>Cost: $203.29</h2>
-                  </div>
-                </div>
-                <div class="available-res-card">
-                  <div class="cabin-stats-container">
-                    <h2>Cabin: #12</h2>
-                    <h2>Number of Beds: 1</h2>
-                    <h2>Bed Size: king</h2>
-                    <h2>Bidet: false</h2>
-                    <h2>Cost: $198.43</h2>
-                  </div>
-                </div>
-                <div class="available-res-card">
-                  <div class="cabin-stats-container">
-                    <h2>Cabin: #16</h2>
-                    <h2>Number of Beds: 2</h2>
-                    <h2>Bed Size: queen</h2>
-                    <h2>Bidet: true</h2>
-                    <h2>Cost: $134.26</h2>
-                  </div>
-                </div>
+    </section>
+
+  </main>
 
 
+</body>
 
-
-
-
-
-      </section>
-
-    </main>
-
-
-  </body>
 </html>

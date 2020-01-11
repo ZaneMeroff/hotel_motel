@@ -25,6 +25,14 @@ const domUpdates = {
      hideOrShowElement('show', '.new-search-button');
   }),
 
+  displayManagerViewOfSelectedCustomer: $('.search-users-button').on('click', () => {
+    hideOrShowElement('hide', '.search-users-container');
+    hideOrShowElement('hide', '.manager-available-res-container');
+
+    hideOrShowElement('show', '.past-future-container-manager');
+    hideOrShowElement('show', '.make-booking-for-this-guest-container');
+  }),
+
 
 
 
