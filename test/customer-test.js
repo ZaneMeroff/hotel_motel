@@ -1,6 +1,6 @@
 const chai = require("chai");
 const expect = chai.expect;
-import Customer from './src/customer';
+import Customer from '../src/customer';
 
 describe('Customer', () => {
   let customer1;
@@ -11,8 +11,8 @@ describe('Customer', () => {
 
   describe('default properties', () => {
 
-    it('should be a function', () => {
-      expect(Customer).to.be.a('function');
+    it('should be an object', () => {
+      expect(customer1).to.be.a('object');
     })
 
     it('should be an instance of a Game', () => {
