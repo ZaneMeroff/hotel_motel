@@ -1,6 +1,6 @@
 const chai = require("chai");
 const expect = chai.expect;
-import Hotel from './src/hotel';
+import Hotel from '../src/hotel';
 
 describe('Hotel', () => {
   let hotel1;
