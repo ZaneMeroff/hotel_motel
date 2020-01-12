@@ -10,10 +10,10 @@ import domUpdates from './domUpdates.js';
 let allData = {};
 let signedInUser;
 let newDate = new Date();
-let usableDate = new Date(newDate)
 
-console.log(usableDate);
-
+const getTodaysDate = () => {
+  return `${newDate.getFullYear()}/${newDate.getMonth()+1}/${newDate.getDate()}`;
+}
 
 // fetch dataset
 const fetchUserData = () => {
@@ -52,6 +52,9 @@ const checkSignInStatus = () => {
     userIdNumber = parseInt($('#username').val().split('r')[1])
     instanciateCustomer(userIdNumber);
     domUpdates.displayCustomerWelcomeScreen(signedInUser);
+
+    domUpdates.populatePastFutureReservations(signedInUser);
+
     hideOrShowElement('show', '.past-future-container');
     hideOrShowElement('show', '.book-a-cabin-container');
     hideOrShowElement('show', '.log-out-button');
@@ -74,7 +77,7 @@ const instanciateCustomer = id => {
       return user;
     }
   })
-  signedInUser = new Customer(selectedUser.id, selectedUser.name, allData)
+  signedInUser = new Customer(selectedUser.id, selectedUser.name, allData, getTodaysDate())
   signedInUser.findAllBookings()
 }
 
@@ -86,8 +89,10 @@ export const hideOrShowElement = (command, element) => {
   }
 }
 
+
 // On Page Load
 getData()
+getTodaysDate()
 
 // Event Listeners
 $('.sign-in-button').click(checkSignInStatus);
