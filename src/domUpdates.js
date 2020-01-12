@@ -23,7 +23,11 @@ const domUpdates = {
     let user = giveUser();
     user.searchDate = $('.date-input').val();
     user.addAvailableCabinsToBookingSearch()
-    console.log(user.availableRooms);
+    // need to clear out search results
+    // need to write conditional if $('.date-input').val() is empty
+    // display error message
+    // also need to make post request if booking is selected
+    domUpdates.populateCustomerSearchResults(user)
     hideOrShowElement('hide', '.past-future-container');
     hideOrShowElement('hide', '.book-a-cabin-container');
     hideOrShowElement('show', '.available-res-container');
@@ -37,6 +41,12 @@ const domUpdates = {
     hideOrShowElement('show', '.make-booking-for-this-guest-container');
   }),
 
+  goBackToCustomerSearch: () => {
+    hideOrShowElement('show', '.past-future-container');
+    hideOrShowElement('show', '.book-a-cabin-container');
+    hideOrShowElement('hide', '.available-res-container');
+  },
+
   populatePastFutureReservations: (currentUser) => {
     currentUser.allBookings.forEach(booking => {
     $('.past-future-card-area').append(
@@ -46,10 +56,22 @@ const domUpdates = {
     })
   },
 
-
-
-
-
+  populateCustomerSearchResults: (user) => {
+    user.availableRooms.forEach(room => {
+    $('.available-res-card-area').append(
+    `<div class="available-res-card">
+      <div class="cabin-stats-container">
+        <h2>Cabin: #${room.number}</h2>
+        <h2>${room.roomType}</h2>
+        <h2>Number of Beds: ${room.numBeds}</h2>
+        <h2>Bed Size: ${room.bedSize}</h2>
+        <h2>Bidet: ${room.bidet}</h2>
+        <h2>Cost: $${room.costPerNight}</h2>
+      </div>
+      <button type="button" class="book-this-cabin-button">book this cabin</button>
+    </div>`)
+    })
+  },
 
 
 }
