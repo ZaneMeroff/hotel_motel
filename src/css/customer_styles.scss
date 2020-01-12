@@ -50,7 +50,8 @@ $menu-grey:rgba(139, 137, 132, 0.7);
   margin: 3%;
 }
 
-.past-future-card-area {
+.past-future-card-area,
+.available-res-card-area {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -72,7 +73,7 @@ $menu-grey:rgba(139, 137, 132, 0.7);
 }
 
 .available-res-card {
-  height: 110px;
+  height: 130px;
   display: flex;
 }
 
