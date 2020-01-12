@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import Customer from './customer.js'
 import {hideOrShowElement} from './index.js';
+import {giveUser} from './index.js';
 
 const domUpdates = {
 
@@ -18,12 +19,16 @@ const domUpdates = {
      location.reload();
   }),
 
-  displayCustomerSearchResults: $('.select-date-button').on('click', () => {
-     hideOrShowElement('show', '.available-res-container');
-     hideOrShowElement('hide', '.book-a-cabin-container');
-     hideOrShowElement('hide', '.past-future-container');
-     hideOrShowElement('show', '.new-search-button');
-  }),
+  displayCustomerSearchResults: () => {
+    let user = giveUser();
+    user.searchDate = $('.date-input').val();
+    user.addAvailableCabinsToBookingSearch()
+    console.log(user.availableRooms);
+    hideOrShowElement('hide', '.past-future-container');
+    hideOrShowElement('hide', '.book-a-cabin-container');
+    hideOrShowElement('show', '.available-res-container');
+    hideOrShowElement('show', '.new-search-button');
+  },
 
   displayManagerViewOfSelectedCustomer: $('.search-users-button').on('click', () => {
     hideOrShowElement('hide', '.search-users-container');
