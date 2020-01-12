@@ -1,14 +1,17 @@
 import $ from 'jquery';
+import Customer from './customer.js'
 
 class Hotel {
-  constructor(users, bookings, rooms) {
-    this.users = users;
-    this.bookings = bookings;
+  constructor(users, rooms, bookings, date) {
+    this.allUsers = users;
     this.rooms = rooms;
-    // this.today = this.getTodaysDate();
-    this.currentUser;
-    this.date;
+    this.bookings = bookings;
+    this.date = date;
   }
+
+
+
+
 }
 
 
