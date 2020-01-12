@@ -1,12 +1,13 @@
 import $ from 'jquery';
+import Customer from './customer.js'
 import {hideOrShowElement} from './index.js';
-
+// import signedInUser from './index.js';
 
 const domUpdates = {
 
-  displayCustomerWelcomeScreen: () => {
-    $('.h1-heading').text('Howdy, Trudie!')
-    $('.h2-heading').text('as of 01/09/20 you have spent $1,345.48')
+  displayCustomerWelcomeScreen: (currentUser) => {
+    $('.h1-heading').text(`Howdy, ${currentUser.name}`)
+    $('.h2-heading').text(`as of 01/09/20 you have spent $${currentUser.totalSpent}`)
   },
 
   displayManagerDashboard: () => {
@@ -28,7 +29,6 @@ const domUpdates = {
   displayManagerViewOfSelectedCustomer: $('.search-users-button').on('click', () => {
     hideOrShowElement('hide', '.search-users-container');
     hideOrShowElement('hide', '.manager-available-res-container');
-
     hideOrShowElement('show', '.past-future-container-manager');
     hideOrShowElement('show', '.make-booking-for-this-guest-container');
   }),
