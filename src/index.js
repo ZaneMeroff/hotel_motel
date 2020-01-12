@@ -55,8 +55,6 @@ const checkSignInStatus = () => {
     instanciateHotel();
     domUpdates.displayCustomerWelcomeScreen(signedInUser);
     domUpdates.populatePastFutureReservations(signedInUser);
-
-
     hideOrShowElement('show', '.past-future-container');
     hideOrShowElement('show', '.book-a-cabin-container');
     hideOrShowElement('show', '.log-out-button');
@@ -72,11 +70,6 @@ const checkSignInStatus = () => {
     hideOrShowElement('show', '.user-validation');
   }
 }
-
-// const pullCustmerSearchValue = () => {
-//   $('.date-input').val() =
-//
-// }
 
 const instanciateCustomer = id => {
   let selectedUser = allData.userData.find(user => {
@@ -111,4 +104,5 @@ getTodaysDate()
 
 // Event Listeners
 $('.sign-in-button').click(checkSignInStatus);
-$('.select-date-button').on('click', domUpdates.displayCustomerSearchResults);
+$('.select-date-button').click(domUpdates.displayCustomerSearchResults);
+$('.new-search-button').click(domUpdates.goBackToCustomerSearch);
