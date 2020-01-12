@@ -2,10 +2,18 @@ import $ from 'jquery';
 import './css/base.scss';
 import './css/customer_styles.scss';
 import './css/manager_styles.scss';
-import hotel from './hotel.js';
-import customer from './customer.js';
-import manager from './manager.js';
+import Hotel from './hotel.js';
+import Customer from './customer.js';
+import Manager from './manager.js';
 import domUpdates from './domUpdates.js';
+
+let allData = {};
+let signedInUser;
+let newDate = new Date();
+let usableDate = new Date(newDate)
+
+console.log(usableDate);
+
 
 // fetch dataset
 const fetchUserData = () => {
@@ -25,13 +33,25 @@ const fetchBookingData = () => {
 }
 const getData = () => {
   Promise.all([fetchUserData(), fetchRoomData(), fetchBookingData()])
-    .then(values => console.log(values))
+    .then(values => assignAPIdata(values))
     .catch((error) => window.alert(`error: ${error}.`))
 }
 
+const assignAPIdata = apiData => {
+  apiData.forEach(item => {
+    allData.userData = apiData[0].users;
+    allData.roomData = apiData[1].rooms;
+    allData.bookingData = apiData[2].bookings;
+  })
+}
+
 const checkSignInStatus = () => {
-  if ($('#username').val() === 'c' && $('#password').val() === 'c') {
-    domUpdates.displayCustomerWelcomeScreen();
+  let userIdNumber;
+  // = $('#username').val().split('r')[1]
+  if ($('#username').val().split('r')[0] === 'custome') {
+    userIdNumber = parseInt($('#username').val().split('r')[1])
+    instanciateCustomer(userIdNumber);
+    domUpdates.displayCustomerWelcomeScreen(signedInUser);
     hideOrShowElement('show', '.past-future-container');
     hideOrShowElement('show', '.book-a-cabin-container');
     hideOrShowElement('show', '.log-out-button');
@@ -46,6 +66,16 @@ const checkSignInStatus = () => {
   } else {
     hideOrShowElement('show', '.user-validation');
   }
+}
+
+const instanciateCustomer = id => {
+  let selectedUser = allData.userData.find(user => {
+    if (user.id === id) {
+      return user;
+    }
+  })
+  signedInUser = new Customer(selectedUser.id, selectedUser.name, allData)
+  signedInUser.findAllBookings()
 }
 
 export const hideOrShowElement = (command, element) => {
