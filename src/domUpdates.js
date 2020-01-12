@@ -1,13 +1,12 @@
 import $ from 'jquery';
 import Customer from './customer.js'
 import {hideOrShowElement} from './index.js';
-// import signedInUser from './index.js';
 
 const domUpdates = {
 
   displayCustomerWelcomeScreen: (currentUser) => {
     $('.h1-heading').text(`Howdy, ${currentUser.name}`)
-    $('.h2-heading').text(`as of 01/09/20 you have spent $${currentUser.totalSpent}`)
+    $('.h2-heading').text(`as of ${currentUser.currentDate} you have spent $${currentUser.totalSpent}`)
   },
 
   displayManagerDashboard: () => {
@@ -32,6 +31,15 @@ const domUpdates = {
     hideOrShowElement('show', '.past-future-container-manager');
     hideOrShowElement('show', '.make-booking-for-this-guest-container');
   }),
+
+  populatePastFutureReservations: (currentUser) => {
+    currentUser.allBookings.forEach(booking => {
+    $('.past-future-card-area').append(
+    `<div class="past-future-card">
+      <h2>Cabin: ${booking.roomNumber}</h2>
+      <h2>Date: ${booking.date}</h2></div>`)
+    })
+  },
 
 
 

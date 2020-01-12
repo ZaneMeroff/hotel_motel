@@ -1,11 +1,11 @@
 import $ from 'jquery';
 
 class Customer {
-  constructor(id, name, data) {
+  constructor(id, name, data, date) {
      this.id = id;
      this.name = name;
      this.data = data;
-     this.currentDate = '';
+     this.currentDate = date;
      this.totalSpent = 0;
      this.allBookings = [];
    }
@@ -28,11 +28,6 @@ class Customer {
        return acc;
      },0)
      return number.toFixed(2);
-   }
-
-   findTodaysDate() {
-     
-
    }
 
 
