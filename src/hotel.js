@@ -8,33 +8,27 @@ class Hotel {
     this.rooms = rooms;
     this.bookings = bookings;
     this.date = date;
+    this.roomsBookedToday = [];
     this.roomsAvailableToday = [];
     this.totalOccupancy = 0;
   }
 
-  calculateRoomsAvailableToday() {
-
+  findRoomsAvailableToday() {
+    // iterate through roomsBooked today
+    // find rooms that do not exist in that array
   }
 
-  calculateTodaysBookings() {
-    let todaysBookings = this.bookings.filter(booking => {
-      return booking.date === this.date;
+  findTodaysBookings() {
+    this.roomsBookedToday = this.bookings.filter(booking => {
+      if (booking.date === this.date) {
+      return booking;
+      }
     })
-    this.roomsAvailableToday.push(todaysBookings);
   }
 
   calculateTotalOccupancy() {
-  // filter bookings that match todays dates
-  // use that arrays length / 25
-  // then grab the decimal places and reassign to this.totalOccupancy
-  let todaysBookings = hotel.bookings.filter(booking => {
-    return booking.date === this.todaysDate;
-  })
-
+  this.totalOccupancy = Math.floor((this.roomsBookedToday.length / 25) * 100)
   }
-
-
-
 
 }
 
