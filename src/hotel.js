@@ -14,9 +14,13 @@ class Hotel {
   }
 
   findRoomsAvailableToday() {
-    // iterate through roomsBooked today
-    // find rooms that do not exist in that array
+    this.roomsAvailableToday = this.rooms.filter(room => {
+      return !this.roomsBookedToday.find(booking => {
+        return booking.roomNumber === room.number
+      })
+    })
   }
+
 
   findTodaysBookings() {
     this.roomsBookedToday = this.bookings.filter(booking => {

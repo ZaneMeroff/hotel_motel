@@ -68,11 +68,23 @@ const domUpdates = {
     })
   },
 
-
+  populateAvailableRoomsForManager: (hotel) => {
+    hotel.roomsAvailableToday.forEach(room => {
+    $('.manager-past-future-card-area').append(
+      `<div class="available-res-card">
+        <div class="cabin-stats-container">
+          <h2>Cabin: #${room.number}</h2>
+          <h2>${room.roomType}</h2>
+          <h2>Number of Beds: ${room.numBeds}</h2>
+          <h2>Bed Size: ${room.bedSize}</h2>
+          <h2>Bidet: ${room.bidet}</h2>
+          <h2>Cost: $${room.costPerNight}</h2>
+        </div>
+      </div>`)
+    })
+  },
 
 
 }
-
-
 
 export default domUpdates;

@@ -51,7 +51,8 @@ $menu-grey:rgba(139, 137, 132, 0.7);
 }
 
 .past-future-card-area,
-.available-res-card-area {
+.available-res-card-area,
+.manager-past-future-card-area {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -63,7 +64,7 @@ $menu-grey:rgba(139, 137, 132, 0.7);
 .manager-past-future-card {
   margin: 1%;
   width: 90%;
-  height: 60px;
+  height: auto;
   background-color: rgba(139, 137, 132, 0.9);
   border-radius: 5px;
 }
@@ -78,7 +79,9 @@ $menu-grey:rgba(139, 137, 132, 0.7);
 }
 
 .cabin-stats-container {
-  padding: 3%;
+  padding: 1%;
+  width: 100%;
+  height: auto;
 }
 
 .select-date-button,
@@ -117,8 +120,9 @@ $menu-grey:rgba(139, 137, 132, 0.7);
 
 .select-dates-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
+
 }
 
 .radio-button-container {

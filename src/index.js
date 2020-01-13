@@ -66,6 +66,7 @@ const checkSignInStatus = () => {
     hotel.calculateTotalOccupancy();
     hotel.findRoomsAvailableToday();
     manager.calculateTodaysTotalRevenue(hotel);
+    domUpdates.populateAvailableRoomsForManager(hotel);
     domUpdates.displayManagerDashboard(manager, hotel);
     hideOrShowElement('hide', '.landing-container');
     hideOrShowElement('show', '.log-out-button, .search-users-container, .manager-available-res-container');
