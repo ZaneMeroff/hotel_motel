@@ -33,19 +33,17 @@
           <h2>book a new reservation</h2>
         </div>
         <div class="select-dates-container">
-          <input type="text" class="date-input" placeholder="year/month/day">
-          <!-- <select class="possible-dates-dropdown dates">
-            <option>01/01/20</option>
-            <option>01/02/20</option>
-            <option>01/03/20</option>
-          </select> -->
+          <input type="date" class="date-input">
           <button type="button" class="select-date-button dates">select date</button><br>
         </div>
         <div class="radio-button-container">
-          <input type="radio" class="radio-button">suite<br>
-          <input type="radio" class="radio-button">single room<br>
-          <input type="radio" class="radio-button">residential suite<br>
-          <input type="radio" class="radio-button">junior suite<br>
+          <select class="room-type-dropdown">
+            <option selected value="">filter room type</option>
+            <option value="suite">suite</option>
+            <option value="single room">single room</option>
+            <option value="residential suite">residential suite</option>
+            <option value="junior suite">junior suite</option>
+          </select>
         </div>
       </div>
 
@@ -53,11 +51,11 @@
         <div class="sign-in-container">
           <div class="sign-in-block">
             <label for="username">username:</label>
-            <input id="username" type="text">
+            <input id="username" value="manager" type="text">
           </div>
           <div class="sign-in-block">
             <label for="password">password:</label>
-            <input id="password" type="text">
+            <input id="password" value="overlook19" type="text">
           </div>
         </div>
         <button type="button" class="sign-in-button">sign in</button>

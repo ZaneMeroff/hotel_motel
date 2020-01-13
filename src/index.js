@@ -7,9 +7,10 @@ import Customer from './customer.js';
 import Manager from './manager.js';
 import domUpdates from './domUpdates.js';
 
-let allData = {};
 let hotel;
+let manager;
 let signedInUser;
+let allData = {};
 let newDate = new Date();
 
 // fetch dataset
@@ -43,7 +44,7 @@ const assignAPIdata = apiData => {
 }
 
 const getTodaysDate = () => {
-  return `${newDate.getFullYear()}/${newDate.getMonth()+1}/${newDate.getDate()}`;
+  return `${newDate.getFullYear()}/0${newDate.getMonth()+1}/${newDate.getDate()}`;
 }
 
 const checkSignInStatus = () => {
@@ -55,20 +56,25 @@ const checkSignInStatus = () => {
     instanciateHotel();
     domUpdates.displayCustomerWelcomeScreen(signedInUser);
     domUpdates.populatePastFutureReservations(signedInUser);
-    hideOrShowElement('show', '.past-future-container');
-    hideOrShowElement('show', '.book-a-cabin-container');
-    hideOrShowElement('show', '.log-out-button');
-    hideOrShowElement('show', '.user-validation');
+    hideOrShowElement('show', '.past-future-container, .book-a-cabin-container, .log-out-button, .user-validation');
     hideOrShowElement('hide', '.landing-container');
-  } else if ($('#username').val() === 'm' && $('#password').val() === 'm') {
-    domUpdates.displayManagerDashboard();
+    $(".date-input").attr("min", getTodaysDate().split('/').join('-') );
+  } else if ($('#username').val() === 'manager' && $('#password').val() === 'overlook19') {
+    instanciateHotel();
+    instantiateManager();
+    manager.calculateTodaysTotalRevenue(hotel);
+    domUpdates.displayManagerDashboard(manager);
     hideOrShowElement('hide', '.landing-container');
-    hideOrShowElement('show', '.log-out-button');
-    hideOrShowElement('show', '.search-users-container');
-    hideOrShowElement('show', '.manager-available-res-container');
+    hideOrShowElement('show', '.log-out-button, .search-users-container, .manager-available-res-container');
   } else {
     hideOrShowElement('show', '.user-validation');
   }
+}
+
+const postNewBookingToAPI = (event) => {
+  let target = parseInt(event.currentTarget.id);
+  console.log(target);
+  // ^ need to make post request from here
 }
 
 const instanciateCustomer = id => {
@@ -86,6 +92,10 @@ export const instanciateHotel = () => {
   return hotel;
 }
 
+const instantiateManager = () => {
+  manager = new Manager('manager', getTodaysDate());
+}
+
 export const hideOrShowElement = (command, element) => {
   if (command === 'hide') {
     $(`${element}`).addClass('hidden');
@@ -98,6 +108,10 @@ export const giveUser = () => {
   return signedInUser;
 }
 
+export const giveManager = () => {
+  return manager;
+}
+
 // On Page Load
 getData()
 getTodaysDate()
@@ -106,3 +120,4 @@ getTodaysDate()
 $('.sign-in-button').click(checkSignInStatus);
 $('.select-date-button').click(domUpdates.displayCustomerSearchResults);
 $('.new-search-button').click(domUpdates.goBackToCustomerSearch);
+$('.available-res-card-area').on('click', '.book-this-cabin-button', postNewBookingToAPI);

@@ -39,6 +39,8 @@ class Customer {
 
   addAvailableCabinsToBookingSearch() {
     let hotel = instanciateHotel();
+    $('.available-res-card-area').html('');
+    this.clearOutAvailableRooms();
     this.unavailableRooms = hotel.rooms.reduce((acc, room) => {
       hotel.bookings.forEach(booking => {
         if (this.searchDate === booking.date && booking.roomNumber === room.number) {
@@ -50,19 +52,34 @@ class Customer {
     this.unavailableRooms.forEach(unavailableRoom => {
       hotel.rooms.forEach(room => {
         if (!this.unavailableRooms.includes(room) && !this.availableRooms.includes(room)) {
+          // checkForFilters(room)
           this.availableRooms.push(room);
         }
       })
     })
   }
 
+  checkForFilters(item) {
+    if ($('.room-type-dropdown').val()) {
+      item.forEach(room => {
+        if ($('.room-type-dropdown').val() === room.roomType) {
+          this.availableRooms.push(room);
+        }
+      })
+    } else {
+      return item
+    }
+  }
+
+  clearOutAvailableRooms() {
+    this.availableRooms = [];
+  }
+
+  bookSelectedCabin() {
+    console.log('hi');
+  }
+
 }
-
-
-
-
-
-
 
 
 
