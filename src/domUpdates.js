@@ -2,6 +2,7 @@ import $ from 'jquery';
 import Customer from './customer.js'
 import {hideOrShowElement} from './index.js';
 import {giveUser} from './index.js';
+// import {giveManager} from './index.js';
 
 const domUpdates = {
 
@@ -10,9 +11,9 @@ const domUpdates = {
     $('.h2-heading').text(`as of ${currentUser.currentDate} you have spent $${currentUser.totalSpent}`)
   },
 
-  displayManagerDashboard: () => {
-    $('.h1-heading').text('Howdy, Manager')
-    $('.h2-heading').text('today is 01/09/20 • total revenue for today: $8,393.59')
+  displayManagerDashboard: (manager) => {
+    $('.h1-heading').text(`Howdy, ${manager.name}`)
+    $('.h2-heading').text(`today is ${manager.todaysDate} • total revenue for today: ${manager.todaysTotalRevenue}`)
   },
 
   logOutUser: $('.log-out-button').on('click', () => {
@@ -21,29 +22,23 @@ const domUpdates = {
 
   displayCustomerSearchResults: () => {
     let user = giveUser();
-    user.searchDate = $('.date-input').val();
+    user.searchDate = $('.date-input').val().split('-').join('/')
     user.addAvailableCabinsToBookingSearch()
-    // need to clear out search results
-    // need to write conditional if $('.date-input').val() is empty
     // display error message
     // also need to make post request if booking is selected
     domUpdates.populateCustomerSearchResults(user)
-    hideOrShowElement('hide', '.past-future-container');
-    hideOrShowElement('hide', '.book-a-cabin-container');
-    hideOrShowElement('show', '.available-res-container');
-    hideOrShowElement('show', '.new-search-button');
+    hideOrShowElement('hide', '.past-future-container, .book-a-cabin-container');
+    hideOrShowElement('show', '.available-res-container, .new-search-button');
   },
 
   displayManagerViewOfSelectedCustomer: $('.search-users-button').on('click', () => {
-    hideOrShowElement('hide', '.search-users-container');
-    hideOrShowElement('hide', '.manager-available-res-container');
-    hideOrShowElement('show', '.past-future-container-manager');
-    hideOrShowElement('show', '.make-booking-for-this-guest-container');
+    hideOrShowElement('hide', '.search-users-container, .manager-available-res-container');
+    hideOrShowElement('show', '.past-future-container-manager, .make-booking-for-this-guest-container');
   }),
 
   goBackToCustomerSearch: () => {
-    hideOrShowElement('show', '.past-future-container');
-    hideOrShowElement('show', '.book-a-cabin-container');
+    $('.date-input').val('');
+    hideOrShowElement('show', '.past-future-container, .book-a-cabin-container');
     hideOrShowElement('hide', '.available-res-container');
   },
 
@@ -68,10 +63,12 @@ const domUpdates = {
         <h2>Bidet: ${room.bidet}</h2>
         <h2>Cost: $${room.costPerNight}</h2>
       </div>
-      <button type="button" class="book-this-cabin-button">book this cabin</button>
+      <button type="button" id="${room.number}" class="book-this-cabin-button">book this cabin</button>
     </div>`)
     })
   },
+
+
 
 
 }
