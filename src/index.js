@@ -62,6 +62,7 @@ const checkSignInStatus = () => {
   } else if ($('#username').val() === 'manager' && $('#password').val() === 'overlook19') {
     instanciateHotel();
     instantiateManager();
+    hotel.calculateTodaysBookings();
     manager.calculateTodaysTotalRevenue(hotel);
     domUpdates.displayManagerDashboard(manager);
     hideOrShowElement('hide', '.landing-container');
