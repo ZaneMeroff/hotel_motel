@@ -62,8 +62,11 @@ const checkSignInStatus = () => {
   } else if ($('#username').val() === 'manager' && $('#password').val() === 'overlook19') {
     instanciateHotel();
     instantiateManager();
+    hotel.findTodaysBookings();
+    hotel.calculateTotalOccupancy();
+    hotel.findRoomsAvailableToday();
     manager.calculateTodaysTotalRevenue(hotel);
-    domUpdates.displayManagerDashboard(manager);
+    domUpdates.displayManagerDashboard(manager, hotel);
     hideOrShowElement('hide', '.landing-container');
     hideOrShowElement('show', '.log-out-button, .search-users-container, .manager-available-res-container');
   } else {
@@ -73,7 +76,7 @@ const checkSignInStatus = () => {
 
 const postNewBookingToAPI = (event) => {
   let target = parseInt(event.currentTarget.id);
-  console.log(target);
+  // console.log(target);
   // ^ need to make post request from here
 }
 

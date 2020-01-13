@@ -2,7 +2,6 @@ import $ from 'jquery';
 import Customer from './customer.js'
 import {hideOrShowElement} from './index.js';
 import {giveUser} from './index.js';
-// import {giveManager} from './index.js';
 
 const domUpdates = {
 
@@ -11,9 +10,10 @@ const domUpdates = {
     $('.h2-heading').text(`as of ${currentUser.currentDate} you have spent $${currentUser.totalSpent}`)
   },
 
-  displayManagerDashboard: (manager) => {
+  displayManagerDashboard: (manager, hotel) => {
     $('.h1-heading').text(`Howdy, ${manager.name}`)
-    $('.h2-heading').text(`today is ${manager.todaysDate} • total revenue for today: ${manager.todaysTotalRevenue}`)
+    $('.h2-heading').text(`today is ${manager.todaysDate} • total revenue for today is $${manager.todaysTotalRevenue}`)
+    $('.total-occupancy').text(`${hotel.totalOccupancy}%`)
   },
 
   logOutUser: $('.log-out-button').on('click', () => {
