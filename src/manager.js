@@ -23,6 +23,8 @@ class Manager extends Customer {
       return acc;
     }, 0).toFixed(2);
   }
+
+
 }
 
 
