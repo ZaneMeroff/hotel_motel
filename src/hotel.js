@@ -13,6 +13,10 @@ class Hotel {
     this.totalOccupancy = 0;
   }
 
+  setBookings(bookings) {
+    this.bookings = bookings
+  }
+
   findRoomsAvailableToday() {
     this.roomsAvailableToday = this.rooms.filter(room => {
       return !this.roomsBookedToday.find(booking => {
