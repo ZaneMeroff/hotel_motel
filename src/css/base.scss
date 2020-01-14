@@ -76,6 +76,7 @@ label {
 
 .book-this-cabin-button,
 .new-search-button,
+.go-back-button,
 .log-out-button,
 .sign-in-button {
   color: #000000;
@@ -98,6 +99,7 @@ label {
 }
 
 .new-search-button,
+.go-back-button,
 .log-out-button {
   position: absolute;
   top: 3%;
@@ -106,12 +108,14 @@ label {
   height: 30px;
 }
 
-.new-search-button {
+.new-search-button,
+.go-back-button {
   right: 0%;
   left: 4%;
 }
 
-.new-search-button:hover {
+.new-search-button:hover,
+.go-back-button:hover {
   cursor: pointer;
 }
 
