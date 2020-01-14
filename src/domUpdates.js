@@ -11,7 +11,7 @@ const domUpdates = {
   },
 
   displayManagerDashboard: (manager, hotel) => {
-    $('.h1-heading').text(`Howdy, ${manager.name}`)
+    $('.h1-heading').text(`${manager.name} dashboard`)
     $('.h2-heading').text(`today is ${manager.todaysDate} • total revenue for today is $${manager.todaysTotalRevenue}`)
     $('.total-occupancy').text(`${hotel.totalOccupancy}%`)
   },
@@ -33,7 +33,7 @@ const domUpdates = {
 
   displayManagerViewOfSelectedCustomer: $('.search-users-button').on('click', () => {
     hideOrShowElement('hide', '.search-users-container, .manager-available-res-container');
-    hideOrShowElement('show', '.past-future-container-manager, .make-booking-for-this-guest-container');
+    hideOrShowElement('show', '.past-future-container-manager, .make-booking-for-this-guest-container, .go-back-button');
   }),
 
   goBackToCustomerSearch: () => {
@@ -43,6 +43,7 @@ const domUpdates = {
   },
 
   populatePastFutureReservations: (currentUser) => {
+    $('.past-future-card-area').empty();
     currentUser.allBookings.forEach(booking => {
     $('.past-future-card-area').append(
     `<div class="past-future-card">
@@ -52,20 +53,25 @@ const domUpdates = {
   },
 
   populateCustomerSearchResults: (user) => {
-    user.availableRooms.forEach(room => {
-    $('.available-res-card-area').append(
-    `<div class="available-res-card">
-      <div class="cabin-stats-container">
-        <h2>Cabin: #${room.number}</h2>
-        <h2>${room.roomType}</h2>
-        <h2>Number of Beds: ${room.numBeds}</h2>
-        <h2>Bed Size: ${room.bedSize}</h2>
-        <h2>Bidet: ${room.bidet}</h2>
-        <h2>Cost: $${room.costPerNight}</h2>
-      </div>
-      <button type="button" id="${room.number}" class="book-this-cabin-button">book this cabin</button>
-    </div>`)
-    })
+    if (user.availableRooms.length === 0) {
+      hideOrShowElement('show', '.customer-no-results-error');
+    } else {
+      hideOrShowElement('hide', '.customer-no-results-error');
+      user.availableRooms.forEach(room => {
+      $('.available-res-card-area').append(
+      `<div class="available-res-card">
+        <div class="cabin-stats-container">
+          <h2>Cabin: #${room.number}</h2>
+          <h2>${room.roomType}</h2>
+          <h2>Number of Beds: ${room.numBeds}</h2>
+          <h2>Bed Size: ${room.bedSize}</h2>
+          <h2>Bidet: ${room.bidet}</h2>
+          <h2>Cost: $${room.costPerNight}</h2>
+        </div>
+        <button type="button" id="${room.number}" class="book-this-cabin-button">book this cabin</button>
+      </div>`)
+      })
+    }
   },
 
   populateAvailableRoomsForManager: (hotel) => {
