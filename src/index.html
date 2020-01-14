@@ -11,8 +11,8 @@
   <main>
 
     <nav>
-      <!-- * remember to unhide new search button -->
       <button type="button" class="new-search-button hidden">new search</button>
+      <button type="button" class="go-back-button hidden">go back</button>
       <h1 class="h1-heading">Cabin in the Woods</h1>
       <h2 class="h2-heading">a JW Marriott Product</h2>
       <button type="button" class="log-out-button hidden">logout</button>
@@ -34,8 +34,6 @@
         </div>
         <div class="select-dates-container">
           <input type="date" class="date-input">
-          <button type="button" class="select-date-button dates">select date</button><br>
-          <div class="radio-button-container">
             <select class="room-type-dropdown">
               <option selected value="">filter room type</option>
               <option value="suite">suite</option>
@@ -43,7 +41,7 @@
               <option value="residential suite">residential suite</option>
               <option value="junior suite">junior suite</option>
             </select>
-          </div>
+          <button type="button" class="select-date-button">select date</button><br>
         </div>
       </div>
 
@@ -51,7 +49,7 @@
         <div class="sign-in-container">
           <div class="sign-in-block">
             <label for="username">username:</label>
-            <input id="username" value="manager" type="text">
+            <input id="username" value="customer45" type="text">
           </div>
           <div class="sign-in-block">
             <label for="password">password:</label>
@@ -72,9 +70,10 @@
 
       <div class="available-res-container hidden">
         <div class="past-future-heading">
-          <h2>available bookings</h2>
-          <h2 class="customer-no-results-error hidden">sorry, your search did</h2>
-          <h2 class="customer-no-results-error hidden">not return any matches</h2>
+          <h2>available cabins</h2>
+          <h2 class="customer-no-results-error hidden">Sorry, your search did</h2>
+          <h2 class="customer-no-results-error hidden">not return any matches.</h2>
+          <h2 class="customer-no-results-error hidden">Try changing your search.</h2>
         </div>
         <div class="available-res-card-area"></div>
       </div>
