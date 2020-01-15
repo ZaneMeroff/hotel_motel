@@ -122,20 +122,23 @@ $menu-grey:rgba(139, 137, 132, 0.7);
   display: flex;
   flex-direction: column;
   justify-content: center;
-
+  align-items: center;
 }
 
-.radio-button-container {
-  padding: 20%;
+.select-date-button {
+  margin: 3%;
+  width: 42%;
 }
+
+.room-type-dropdown {
+  margin: 6% 6% 3% 6%;
+  width: 42%;
+}
+
 
 .radio-button {
   margin: 3%;
   font-size: 100%;
-}
-
-.dates {
-  margin: 10% 8% 0% 8%;
 }
 
 .search-user-database-heading {
@@ -150,6 +153,10 @@ $menu-grey:rgba(139, 137, 132, 0.7);
   font-size: 90%;
   width: 37%;
   padding-left: 4%;
+}
+
+.customer-no-results-error {
+  margin-top: 4%;
 }
 
 .room-type-dropdown {

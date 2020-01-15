@@ -7,9 +7,8 @@ import Customer from './customer.js';
 import Manager from './manager.js';
 import domUpdates from './domUpdates.js';
 
-let hotel;
-let manager;
-let signedInUser;
+let hotel, manager, signedInUser;
+let hotelCreated = false;
 let allData = {};
 let newDate = new Date();
 
@@ -24,7 +23,7 @@ const fetchRoomData = () => {
     .then(response => response.json())
     .catch((error) => window.alert(`error: ${error}.`))
 }
-const fetchBookingData = () => {
+const fetchBookingData = async () => {
   return fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings')
     .then(response => response.json())
     .catch((error) => window.alert(`error: ${error}.`))
@@ -75,11 +74,33 @@ const checkSignInStatus = () => {
   }
 }
 
-const postNewBookingToAPI = (event) => {
-  let target = parseInt(event.currentTarget.id);
-  // console.log(target);
-  // ^ need to make post request from here
+const postNewBookingToAPI = async (event) => {
+  let roomNumber = parseInt(event.currentTarget.id);
+  const { id: userID, searchDate: date } = signedInUser
+  const booking = {
+    "userID": userID,
+    "date": date,
+    "roomNumber": roomNumber
+  }
+  const options = {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(booking)
+  }
+  const url = 'https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings'
+  const response = await fetch(url, options);
+  if (!response.ok) throw new Error(`Could not book your room.  Try again.`);
+  const data = await response.json();
+  window.alert(`Your Booking for Cabin #${roomNumber} on ${date} was successful!`)
+  return data;
 }
+
+// const postBooking = async (booking) => {
+//
+//
+//
+//       postBooking(roomToBook);
+// }
 
 const instanciateCustomer = id => {
   let selectedUser = allData.userData.find(user => {
@@ -92,12 +113,25 @@ const instanciateCustomer = id => {
 }
 
 export const instanciateHotel = () => {
-  hotel = new Hotel(allData.userData, allData.roomData, allData.bookingData, getTodaysDate());
+  if (!hotelCreated) {
+    hotel = new Hotel(allData.userData, allData.roomData, allData.bookingData, getTodaysDate());
+    hotelCreated = true
+  }
+  console.log(hotel)
   return hotel;
 }
 
 const instantiateManager = () => {
   manager = new Manager('manager', getTodaysDate());
+}
+
+const onBookThisCabinSelect = async (event) => {
+  await postNewBookingToAPI(event);
+  const response = await fetchBookingData();
+  hotel.setBookings(response.bookings);
+  signedInUser.findAllBookings();
+  domUpdates.populatePastFutureReservations(signedInUser);
+  domUpdates.goBackToCustomerSearch();
 }
 
 export const hideOrShowElement = (command, element) => {
@@ -124,4 +158,4 @@ getTodaysDate()
 $('.sign-in-button').click(checkSignInStatus);
 $('.select-date-button').click(domUpdates.displayCustomerSearchResults);
 $('.new-search-button').click(domUpdates.goBackToCustomerSearch);
-$('.available-res-card-area').on('click', '.book-this-cabin-button', postNewBookingToAPI);
+$('.available-res-card-area').on('click', '.book-this-cabin-button', onBookThisCabinSelect);

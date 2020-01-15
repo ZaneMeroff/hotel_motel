@@ -17,9 +17,10 @@ class Customer {
 
   findAllBookings() {
     let hotel = instanciateHotel();
+    console.log(hotel.bookings, 'customer.hotel.bookings')
     let bookings = hotel.bookings.filter(booking => {
-      return booking.userID === this.id;
-    })
+      return parseInt(booking.userID) === parseInt(this.id);
+    }).sort((a,b) => new Date(b.date) - new Date(a.date))
     this.allBookings = bookings;
     this.totalSpent = this.calculateTotalSpent();
   }
