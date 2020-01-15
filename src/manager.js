@@ -6,10 +6,11 @@ import {instanciateHotel} from './index.js';
 
 class Manager extends Customer {
   constructor(name, date) {
-    super();
+    super(0, name, date);
     this.name = name;
     this.todaysTotalRevenue = 0;
     this.todaysDate = date;
+    this.managersCustomer = null;
   }
 
   calculateTodaysTotalRevenue(hotel) {
@@ -28,14 +29,16 @@ class Manager extends Customer {
   instantiateCustomerFromSearch() {
     let selectedUser = $('.user-search-input').val();
     let hotel = instanciateHotel();
-    console.log(hotel);
-    let targetUser = hotel.allUsers.find(user => {
-      return user.name === selectedUser
-    })
-    let customer = new Customer(selectedUser.id, selectedUser.name, hotel.date)
-    console.log(customer);
-  }
 
+    let targetUser = hotel.allUsers.find(user => {
+      return user.name === selectedUser;
+    })
+    let customer = new Customer(targetUser.id, targetUser.name, hotel.date)
+    customer.findAllBookings();
+    customer.calculateTotalSpent();
+    this.managersCustomer = customer;
+    return customer;
+  }
 
 }
 
