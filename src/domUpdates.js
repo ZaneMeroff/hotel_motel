@@ -5,6 +5,8 @@ import {giveCustomer} from './index.js';
 import {instantiateManager} from './index.js';
 import {instanciateHotel} from './index.js';
 
+let hotel;
+
 const domUpdates = {
 
   displayCustomerWelcomeScreen: (currentUser) => {
@@ -28,9 +30,11 @@ const domUpdates = {
   }),
 
   displayCustomerSearchResults: () => {
+    hotel = instanciateHotel();
     let customer = giveCustomer();
     customer.searchDate = $('.date-input').val().split('-').join('/')
-    customer.addAvailableCabinsToBookingSearch()
+    console.log(hotel);
+    customer.addAvailableCabinsToBookingSearch(hotel)
     domUpdates.populateCustomerSearchResults(customer)
     hideOrShowElement('hide', '.past-future-container, .book-a-cabin-container');
     hideOrShowElement('show', '.available-res-container, .new-search-button');
@@ -38,11 +42,11 @@ const domUpdates = {
 
   displayManagerViewOfSelectedCustomer: $('.search-users-button').on('click', () => {
     let manager = instantiateManager();
-    let hotel = instanciateHotel();
+    hotel = instanciateHotel();
     let customer = manager.instantiateCustomerFromSearch(hotel);
     domUpdates.displayManagerDashOfCustomer(manager);
     domUpdates.populatePastFutureBookingsForCustomer(customer);
-    customer.addAvailableCabinsToBookingSearch()
+    customer.addAvailableCabinsToBookingSearch(hotel)
     domUpdates.populateCustomerSearchResults(customer)
     hideOrShowElement('hide', '.search-users-container, .manager-available-res-container');
     hideOrShowElement('show', '.past-future-container-manager, .available-res-container, .go-back-button');
