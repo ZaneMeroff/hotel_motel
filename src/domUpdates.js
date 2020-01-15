@@ -18,8 +18,13 @@ const domUpdates = {
     $('.total-occupancy').text(`${hotel.totalOccupancy}%`)
   },
 
+  displayManagerDashOfCustomer: (customer) => {
+    $('.h1-heading').text(`manager view of: ${customer.managersCustomer.name}`)
+    $('.h2-heading').text(`todays date: ${customer.currentDate} • total spent: $${customer.managersCustomer.totalSpent}`)
+  },
+
   logOutUser: $('.log-out-button').on('click', () => {
-     location.reload();
+    location.reload();
   }),
 
   displayCustomerSearchResults: () => {
@@ -35,6 +40,7 @@ const domUpdates = {
     let manager = instantiateManager();
     let hotel = instanciateHotel();
     let customer = manager.instantiateCustomerFromSearch(hotel);
+    domUpdates.displayManagerDashOfCustomer(manager);
     domUpdates.populatePastFutureBookingsForCustomer(customer);
     customer.addAvailableCabinsToBookingSearch()
     domUpdates.populateCustomerSearchResults(customer)
@@ -48,12 +54,16 @@ const domUpdates = {
     hideOrShowElement('hide', '.available-res-container');
   },
 
+  goBackToManagerDash: () => {
+    hideOrShowElement('hide', '.available-res-container, .past-future-container-manager, .go-back-button');
+    hideOrShowElement('show', '.search-users-container, .manager-available-res-container');
+  },
+
   populatePastFutureReservations: (currentUser) => {
     $('.past-future-card-area').empty();
-    console.log(currentUser);
     currentUser.allBookings.forEach(booking => {
-    $('.past-future-card-area').append(
-    `<div class="past-future-card">
+      $('.past-future-card-area').append(
+        `<div class="past-future-card">
       <h2>Cabin: ${booking.roomNumber}</h2>
       <h2>Date: ${booking.date}</h2></div>`)
     })
@@ -65,8 +75,8 @@ const domUpdates = {
     } else {
       hideOrShowElement('hide', '.customer-no-results-error');
       user.availableRooms.forEach(room => {
-      $('.available-res-card-area').append(
-      `<div class="available-res-card">
+        $('.available-res-card-area').append(
+          `<div class="available-res-card">
         <div class="cabin-stats-container">
           <h2>Cabin: #${room.number}</h2>
           <h2>${room.roomType}</h2>
@@ -83,8 +93,8 @@ const domUpdates = {
 
   populateAvailableRoomsForManager: (hotel) => {
     hotel.roomsAvailableToday.forEach(room => {
-    $('.manager-past-future-card-area').append(
-      `<div class="available-res-card">
+      $('.manager-past-future-card-area').append(
+        `<div class="available-res-card">
         <div class="cabin-stats-container">
           <h2>Cabin: #${room.number}</h2>
           <h2>${room.roomType}</h2>
@@ -98,9 +108,8 @@ const domUpdates = {
   },
 
   populatePastFutureBookingsForCustomer: (customer) => {
-    console.log(customer.allBookings);
     customer.allBookings.forEach(booking => {
-    $('.manager-past-future-card-area-delete').append(`
+      $('.manager-past-future-card-area-delete').append(`
       <div class="manager-past-future-card">
         <div>
           <h2>Cabin: #${booking.roomNumber}</h2>
