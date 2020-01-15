@@ -112,7 +112,7 @@ describe('Customer', () => {
     })
 
     // the following methods are tested in chai-spies.js
-    // customer.AddAvailableCabinsToBookingSearch()
+    // customer.addAvailableCabinsToBookingSearch()
     // customer.checkForFilters()
 
     describe('findAllBookings', () => {
