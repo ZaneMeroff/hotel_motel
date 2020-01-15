@@ -1,7 +1,5 @@
 import $ from 'jquery';
 import Hotel from './hotel.js'
-import domUpdates from './domUpdates.js';
-import {instanciateHotel} from './index.js';
 
 class Customer {
   constructor(id, name, date) {
@@ -14,37 +12,34 @@ class Customer {
     this.searchDate = date;
   }
 
-  findAllBookings() {
-    let hotel = instanciateHotel();
+  findAllBookings(hotel) {
     let bookings = hotel.bookings.filter(booking => {
       return parseInt(booking.userID) === parseInt(this.id);
     }).sort((a, b) => new Date(b.date) - new Date(a.date))
     this.allBookings = bookings;
   }
 
-  calculateTotalSpent() {
-    let hotel = instanciateHotel();
+  calculateTotalSpent(hotel) {
     let number = hotel.rooms.reduce((acc, room) => {
       hotel.bookings.forEach(booking => {
         if (booking.roomNumber === room.number && booking.userID === this.id) {
           acc += room.costPerNight;
         }
-      })
+      });
       return acc;
-    }, 0)
+    }, 0);
     this.totalSpent = number.toFixed(2);
   }
 
-  addAvailableCabinsToBookingSearch() {
-    let hotel = instanciateHotel();
+  addAvailableCabinsToBookingSearch(hotel) {
     $('.available-res-card-area').html('');
-    this.clearOutAvailableRooms();
+    this.clearOutAvailableRooms(hotel);
     this.unavailableRooms = hotel.rooms.reduce((acc, room) => {
       hotel.bookings.forEach(booking => {
         if (this.searchDate === booking.date && booking.roomNumber === room.number) {
           acc.push(room);
         }
-      })
+      });
       return acc;
     }, []);
     this.unavailableRooms.forEach(unavailableRoom => {
@@ -54,8 +49,8 @@ class Customer {
             this.availableRooms.push(room);
           }
         }
-      })
-    })
+      });
+    });
   }
 
   checkForFilters(room) {
@@ -72,9 +67,6 @@ class Customer {
     this.availableRooms = [];
   }
 
-
 }
-
-
 
 export default Customer;

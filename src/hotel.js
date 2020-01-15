@@ -1,6 +1,4 @@
 import $ from 'jquery';
-import Customer from './customer.js'
-import Manager from './manager.js'
 
 class Hotel {
   constructor(users, rooms, bookings, date) {
@@ -14,7 +12,8 @@ class Hotel {
   }
 
   setBookings(bookings) {
-    this.bookings = bookings
+    this.bookings = bookings;
+    return bookings;
   }
 
   findRoomsAvailableToday() {

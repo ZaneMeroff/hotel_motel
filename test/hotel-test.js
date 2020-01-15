@@ -6,7 +6,8 @@ describe('Hotel', () => {
   let hotel
 
   beforeEach(() => {
-    hotel = new Hotel([{
+    hotel = new Hotel(
+      [{
           id: 1,
           name: 'Leatha Ullrich'
         },
@@ -61,13 +62,13 @@ describe('Hotel', () => {
         {
           id: '5fwrgu4i7k55hl6t6',
           userID: 3,
-          date: '2020/01/10',
+          date: '2020/01/13',
           roomNumber: 6,
           roomServiceCharges: []
         }
       ],
-      '2020/01/12');
-  })
+      '2020/01/13');
+    });
 
   describe('default properties', () => {
 
@@ -92,7 +93,7 @@ describe('Hotel', () => {
     })
 
     it('should hold current date', () => {
-      expect(hotel.date).to.equal('2020/01/12');
+      expect(hotel.date).to.equal('2020/01/13');
     })
 
     it('should start with no rooms booked today', () => {
@@ -110,19 +111,26 @@ describe('Hotel', () => {
     describe('setBookings', () => {
 
       it('should be able update bookings', () => {
-        expect(hotel.bookings.length).to.deep.eql(0);
-        hotel.setBookings()
-        expect(hotel.bookings.length).to.deep.eql(0);
+        expect(hotel.bookings.length).to.equal(3);
+        hotel.setBookings([{
+          id: '5fwrgu4i7k55hl6t6',
+          userID: 3,
+          date: '2020/01/10',
+          roomNumber: 6,
+          roomServiceCharges: []
+        }])
+        expect(hotel.bookings.length).to.equal(1);
       })
 
     })
 
     describe('findRoomsAvailableToday', () => {
 
-      it('should be able update bookings', () => {
-        expect(hotel.bookings.length).to.deep.eql(0);
-        hotel.setBookings()
-        expect(hotel.bookings.length).to.deep.eql(0);
+      it('should be able to find rooms available today', () => {
+        expect(hotel.roomsAvailableToday.length).to.equal(0);
+        hotel.findTodaysBookings()
+        hotel.findRoomsAvailableToday()
+        expect(hotel.roomsAvailableToday.length).to.equal(2);
       })
 
     })
@@ -130,19 +138,22 @@ describe('Hotel', () => {
     describe('findTodaysBookings', () => {
 
       it('should be able to find todays bookings', () => {
-        expect(hotel.roomsBookedToday.length).to.deep.eql(0);
+        expect(hotel.roomsBookedToday.length).to.equal(0);
         hotel.findTodaysBookings()
-        expect(hotel.roomsBookedToday.length).to.deep.eql(0);
+        expect(hotel.roomsBookedToday.length).to.equal(1);
       })
 
     })
 
     describe('calculateTotalOccupancy', () => {
 
-      it('should be able to calculate todays occupancy', () => {
-        expect(hotel.totalOccupancy).to.equal(0);
-        hotel.calculateTotalOccupancy()
-        expect(hotel.totalOccupancy).to.equal(0);
+      it('should be able to calculate todays total occupancy', () => {
+        expect(hotel.roomsBookedToday.length).to.equal(0);
+        hotel.findTodaysBookings();
+        expect(hotel.roomsBookedToday.length).to.equal(1);
+        hotel.calculateTotalOccupancy();
+        expect(hotel.totalOccupancy).to.equal(4);
+
       })
 
     });

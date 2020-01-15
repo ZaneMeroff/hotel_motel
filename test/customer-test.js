@@ -1,21 +1,15 @@
 const chai = require('chai');
 const expect = chai.expect;
-import spies from 'chai-spies';
 import Customer from '../src/customer';
 import Hotel from '../src/hotel.js';
 
-chai.use(spies);
-
 describe('Customer', () => {
-  let customer, hotel
-
-chai.spy.on(customer, ['findAllBookings', 'calculateTotalSpent',
-'AddAvailableCabinsToBookingSearch', 'checkForFilters',
-'clearOutAvailableRooms']);
+  let customer, hotel;
 
   beforeEach(() => {
     customer = new Customer(2, 'Rocio Schuster', '2020/01/12');
-    hotel = new Hotel([{
+    hotel = new Hotel(
+      [{
           id: 1,
           name: 'Leatha Ullrich'
         },
@@ -75,7 +69,7 @@ chai.spy.on(customer, ['findAllBookings', 'calculateTotalSpent',
           roomServiceCharges: []
         }
       ],
-      '2020/01/12');
+      '2020/01/13');
 
   })
 
@@ -113,20 +107,20 @@ chai.spy.on(customer, ['findAllBookings', 'calculateTotalSpent',
       expect(customer.availableRooms.length).to.equal(0);
     })
 
-    it('should start with no available rooms', () => {
-      expect(customer.availableRooms.length).to.equal(0);
-    })
-
     it('should be able to hold a search date', () => {
       expect(customer.searchDate).to.equal('2020/01/12');
     })
 
+    // the following methods are tested in chai-spies.js
+    // customer.AddAvailableCabinsToBookingSearch()
+    // customer.checkForFilters()
+
     describe('findAllBookings', () => {
 
       it('should be able to find all bookings they have', () => {
-        expect(customer.allBookings.length).to.deep.eql(0);
-        customer.findAllBookings()
-        expect(customer.allBookings.length).to.deep.eql(1);
+        expect(customer.allBookings.length).to.equal(0);
+        customer.findAllBookings(hotel)
+        expect(customer.allBookings.length).to.equal(1);
       })
 
     })
@@ -134,29 +128,9 @@ chai.spy.on(customer, ['findAllBookings', 'calculateTotalSpent',
     describe('calculateTotalSpent', () => {
 
       it('should be able to calculate total spent', () => {
-        expect(customer.totalSpent).to.deep.equal(0);
-        customer.calculateTotalSpent();
-        expect(customer.totalSpent).to.deep.equal(477.38);
-      })
-
-    })
-
-    describe('AddAvailableCabinsToBookingSearch', () => {
-
-      it('should add available cabins to booking search', () => {
-        expect(customer.availableRooms.length).to.equal(0);
-        customer.AddAvailableCabinsToBookingSearch();
-        expect(customer.availableRooms.length).to.equal(1);
-      })
-
-    })
-
-    describe('checkForFilters', () => {
-
-      it('should be able to filter search results', () => {
-        expect(customer.availableRooms.length).to.equal(2);
-        customer.checkForFilters();
-        expect(customer.availableRooms.length).to.equal(1);
+        expect(customer.totalSpent).to.equal(0);
+        customer.calculateTotalSpent(hotel);
+        expect(customer.totalSpent).to.equal('477.38');
       })
 
     })
@@ -164,7 +138,14 @@ chai.spy.on(customer, ['findAllBookings', 'calculateTotalSpent',
     describe('clearOutAvailableRooms', () => {
 
       it('should be able to clear out available rooms', () => {
-        customer.availableRooms = 1
+        customer.availableRooms.push({
+            number: 4,
+            roomType: 'residential suite',
+            bidet: true,
+            bedSize: 'queen',
+            numBeds: 1,
+            costPerNight: 358.4
+          })
         expect(customer.availableRooms.length).to.equal(1);
         customer.clearOutAvailableRooms();
         expect(customer.availableRooms.length).to.equal(0);
