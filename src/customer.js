@@ -11,8 +11,7 @@ class Customer {
     this.totalSpent = 0;
     this.allBookings = [];
     this.availableRooms = [];
-    // this.unavailableRooms = [];
-    // this.searchDate = '';
+    this.searchDate = date;
   }
 
   findAllBookings() {
@@ -21,7 +20,6 @@ class Customer {
       return parseInt(booking.userID) === parseInt(this.id);
     }).sort((a, b) => new Date(b.date) - new Date(a.date))
     this.allBookings = bookings;
-    this.totalSpent = this.calculateTotalSpent();
   }
 
   calculateTotalSpent() {
@@ -34,7 +32,7 @@ class Customer {
       })
       return acc;
     }, 0)
-    return number.toFixed(2);
+    this.totalSpent = number.toFixed(2);
   }
 
   addAvailableCabinsToBookingSearch() {
