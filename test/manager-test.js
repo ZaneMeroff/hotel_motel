@@ -73,7 +73,7 @@ describe('Manager', () => {
       '2020/01/13');
   })
 
-  describe('default properties', () => {
+  describe('default properties for manager', () => {
 
     it('should be a function', () => {
       expect(Manager).to.be.a('function');
