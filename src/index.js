@@ -9,6 +9,7 @@ import domUpdates from './domUpdates.js';
 
 let hotel, manager, signedInUser;
 let hotelCreated = false;
+let managerCreated = false;
 let allData = {};
 let newDate = new Date();
 
@@ -51,8 +52,8 @@ const checkSignInStatus = () => {
   // = $('#username').val().split('r')[1]
   if ($('#username').val().split('r')[0] === 'custome') {
     userIdNumber = parseInt($('#username').val().split('r')[1])
-    instanciateCustomer(userIdNumber);
     instanciateHotel();
+    instanciateCustomer(userIdNumber);
     domUpdates.displayCustomerWelcomeScreen(signedInUser);
     domUpdates.populatePastFutureReservations(signedInUser);
     hideOrShowElement('show', '.past-future-container, .book-a-cabin-container, .log-out-button, .user-validation');
@@ -108,7 +109,7 @@ const instanciateCustomer = id => {
       return user;
     }
   })
-  signedInUser = new Customer(selectedUser.id, selectedUser.name, getTodaysDate())
+  signedInUser = new Customer(selectedUser.id, selectedUser.name, hotel.date)
   signedInUser.findAllBookings()
 }
 
@@ -117,12 +118,15 @@ export const instanciateHotel = () => {
     hotel = new Hotel(allData.userData, allData.roomData, allData.bookingData, getTodaysDate());
     hotelCreated = true
   }
-  console.log(hotel)
   return hotel;
 }
 
-const instantiateManager = () => {
-  manager = new Manager('manager', getTodaysDate());
+export const instantiateManager = () => {
+  if (!managerCreated) {
+    manager = new Manager('manager', getTodaysDate());
+    managerCreated = true;
+  }
+  return manager
 }
 
 const onBookThisCabinSelect = async (event) => {
