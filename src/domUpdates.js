@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import Customer from './customer.js'
 import {hideOrShowElement} from './index.js';
-import {giveUser} from './index.js';
+import {giveCustomer} from './index.js';
 import {instantiateManager} from './index.js';
 import {instanciateHotel} from './index.js';
 
@@ -23,12 +23,10 @@ const domUpdates = {
   }),
 
   displayCustomerSearchResults: () => {
-    let user = giveUser();
-    user.searchDate = $('.date-input').val().split('-').join('/')
-    user.addAvailableCabinsToBookingSearch()
-    // display error message
-    // also need to make post request if booking is selected
-    domUpdates.populateCustomerSearchResults(user)
+    let customer = giveCustomer();
+    customer.searchDate = $('.date-input').val().split('-').join('/')
+    customer.addAvailableCabinsToBookingSearch()
+    domUpdates.populateCustomerSearchResults(customer)
     hideOrShowElement('hide', '.past-future-container, .book-a-cabin-container');
     hideOrShowElement('show', '.available-res-container, .new-search-button');
   },
@@ -36,9 +34,12 @@ const domUpdates = {
   displayManagerViewOfSelectedCustomer: $('.search-users-button').on('click', () => {
     let manager = instantiateManager();
     let hotel = instanciateHotel();
-    manager.instantiateCustomerFromSearch(hotel);
+    let customer = manager.instantiateCustomerFromSearch(hotel);
+    domUpdates.populatePastFutureBookingsForCustomer(customer);
+    customer.addAvailableCabinsToBookingSearch()
+    domUpdates.populateCustomerSearchResults(customer)
     hideOrShowElement('hide', '.search-users-container, .manager-available-res-container');
-    hideOrShowElement('show', '.past-future-container-manager, .make-booking-for-this-guest-container, .go-back-button');
+    hideOrShowElement('show', '.past-future-container-manager, .available-res-container, .go-back-button');
   }),
 
   goBackToCustomerSearch: () => {
@@ -49,6 +50,7 @@ const domUpdates = {
 
   populatePastFutureReservations: (currentUser) => {
     $('.past-future-card-area').empty();
+    console.log(currentUser);
     currentUser.allBookings.forEach(booking => {
     $('.past-future-card-area').append(
     `<div class="past-future-card">
@@ -95,6 +97,21 @@ const domUpdates = {
     })
   },
 
+  populatePastFutureBookingsForCustomer: (customer) => {
+    console.log(customer.allBookings);
+    customer.allBookings.forEach(booking => {
+    $('.manager-past-future-card-area-delete').append(`
+      <div class="manager-past-future-card">
+        <div>
+          <h2>Cabin: #${booking.roomNumber}</h2>
+          <h2>Date: ${booking.date}</h2>
+        </div>
+        <div>
+          <button id="${booking.id}" type="button" class="delete-booking-button">delete</button>
+        </div>
+      </div>`)
+    })
+  },
 
 }
 
