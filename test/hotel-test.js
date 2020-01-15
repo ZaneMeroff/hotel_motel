@@ -3,7 +3,7 @@ const expect = chai.expect;
 import Hotel from '../src/hotel';
 
 describe('Hotel', () => {
-  let hotel
+  let hotel;
 
   beforeEach(() => {
     hotel = new Hotel(
@@ -70,7 +70,7 @@ describe('Hotel', () => {
       '2020/01/13');
     });
 
-  describe('default properties', () => {
+  describe('default properties for hotel', () => {
 
     it('should be a function', () => {
       expect(Hotel).to.be.a('function');
@@ -110,7 +110,7 @@ describe('Hotel', () => {
 
     describe('setBookings', () => {
 
-      it('should be able update bookings', () => {
+      it('should be able to update bookings', () => {
         expect(hotel.bookings.length).to.equal(3);
         hotel.setBookings([{
           id: '5fwrgu4i7k55hl6t6',
