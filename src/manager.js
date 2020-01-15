@@ -1,8 +1,8 @@
 import $ from 'jquery';
 import Customer from './customer.js';
 import Hotel from './hotel.js';
-import domUpdates from './domUpdates.js';
-import {instanciateHotel} from './index.js';
+
+let hotel;
 
 class Manager extends Customer {
   constructor(name, date) {
@@ -27,15 +27,15 @@ class Manager extends Customer {
     }, 0).toFixed(2);
   }
 
-  instantiateCustomerFromSearch() {
+  instantiateCustomerFromSearch(hotelObj) {
+    hotel = hotelObj
     let selectedUser = $('.user-search-input').val();
-    let hotel = instanciateHotel();
     let targetUser = hotel.allUsers.find(user => {
       return user.name === selectedUser;
     })
     let customer = new Customer(targetUser.id, targetUser.name, hotel.date)
-    customer.findAllBookings();
-    customer.calculateTotalSpent();
+    customer.findAllBookings(hotel);
+    customer.calculateTotalSpent(hotel);
     this.managersCustomer = customer;
     return customer;
   }
