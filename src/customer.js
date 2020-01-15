@@ -11,18 +11,15 @@ class Customer {
     this.totalSpent = 0;
     this.allBookings = [];
     this.availableRooms = [];
-    // this.unavailableRooms = [];
-    // this.searchDate = '';
+    this.searchDate = date;
   }
 
   findAllBookings() {
     let hotel = instanciateHotel();
-    console.log(hotel.bookings, 'customer.hotel.bookings')
     let bookings = hotel.bookings.filter(booking => {
       return parseInt(booking.userID) === parseInt(this.id);
-    }).sort((a,b) => new Date(b.date) - new Date(a.date))
+    }).sort((a, b) => new Date(b.date) - new Date(a.date))
     this.allBookings = bookings;
-    this.totalSpent = this.calculateTotalSpent();
   }
 
   calculateTotalSpent() {
@@ -35,7 +32,7 @@ class Customer {
       })
       return acc;
     }, 0)
-    return number.toFixed(2);
+    this.totalSpent = number.toFixed(2);
   }
 
   addAvailableCabinsToBookingSearch() {
@@ -53,22 +50,21 @@ class Customer {
     this.unavailableRooms.forEach(unavailableRoom => {
       hotel.rooms.forEach(room => {
         if (!this.unavailableRooms.includes(room) && !this.availableRooms.includes(room)) {
-          // checkForFilters(room)
-          this.availableRooms.push(room);
+          if (this.checkForFilters(room)) {
+            this.availableRooms.push(room);
+          }
         }
       })
     })
   }
 
-  checkForFilters(item) {
-    if ($('.room-type-dropdown').val()) {
-      item.forEach(room => {
-        if ($('.room-type-dropdown').val() === room.roomType) {
-          this.availableRooms.push(room);
-        }
-      })
+  checkForFilters(room) {
+    if ($('.room-type-dropdown').val() !== '' && $('.room-type-dropdown').val() === room.roomType) {
+      return true;
+    } else if ($('.room-type-dropdown').val() !== '' && $('.room-type-dropdown').val() !== room.roomType) {
+      return false;
     } else {
-      return item
+      return true;
     }
   }
 
@@ -76,9 +72,6 @@ class Customer {
     this.availableRooms = [];
   }
 
-  bookSelectedCabin() {
-    console.log('hi');
-  }
 
 }
 

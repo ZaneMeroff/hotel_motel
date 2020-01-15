@@ -9,6 +9,7 @@ import domUpdates from './domUpdates.js';
 
 let hotel, manager, signedInUser;
 let hotelCreated = false;
+let managerCreated = false;
 let allData = {};
 let newDate = new Date();
 
@@ -51,13 +52,13 @@ const checkSignInStatus = () => {
   // = $('#username').val().split('r')[1]
   if ($('#username').val().split('r')[0] === 'custome') {
     userIdNumber = parseInt($('#username').val().split('r')[1])
-    instanciateCustomer(userIdNumber);
     instanciateHotel();
+    instanciateCustomer(userIdNumber);
     domUpdates.displayCustomerWelcomeScreen(signedInUser);
     domUpdates.populatePastFutureReservations(signedInUser);
     hideOrShowElement('show', '.past-future-container, .book-a-cabin-container, .log-out-button, .user-validation');
     hideOrShowElement('hide', '.landing-container');
-    $(".date-input").attr("min", getTodaysDate().split('/').join('-') );
+    $(".date-input").attr("min", getTodaysDate().split('/').join('-'));
   } else if ($('#username').val() === 'manager' && $('#password').val() === 'overlook19') {
     instanciateHotel();
     instantiateManager();
@@ -74,9 +75,12 @@ const checkSignInStatus = () => {
   }
 }
 
-const postNewBookingToAPI = async (event) => {
+const postNewBookingToAPIHelper = async (event, user) => {
+  const {
+    id: userID,
+    searchDate: date
+  } = user;
   let roomNumber = parseInt(event.currentTarget.id);
-  const { id: userID, searchDate: date } = signedInUser
   const booking = {
     "userID": userID,
     "date": date,
@@ -84,7 +88,9 @@ const postNewBookingToAPI = async (event) => {
   }
   const options = {
     method: 'POST',
-    headers: {'Content-Type': 'application/json'},
+    headers: {
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify(booking)
   }
   const url = 'https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings'
@@ -95,12 +101,13 @@ const postNewBookingToAPI = async (event) => {
   return data;
 }
 
-// const postBooking = async (booking) => {
-//
-//
-//
-//       postBooking(roomToBook);
-// }
+const postNewBookingToAPI = async (event) => {
+  const {
+    id: userID,
+    searchDate: date
+  } = signedInUser
+  postNewBookingToAPIHelper(event, signedInUser);
+}
 
 const instanciateCustomer = id => {
   let selectedUser = allData.userData.find(user => {
@@ -108,8 +115,9 @@ const instanciateCustomer = id => {
       return user;
     }
   })
-  signedInUser = new Customer(selectedUser.id, selectedUser.name, getTodaysDate())
+  signedInUser = new Customer(selectedUser.id, selectedUser.name, hotel.date)
   signedInUser.findAllBookings()
+  signedInUser.calculateTotalSpent()
 }
 
 export const instanciateHotel = () => {
@@ -117,32 +125,59 @@ export const instanciateHotel = () => {
     hotel = new Hotel(allData.userData, allData.roomData, allData.bookingData, getTodaysDate());
     hotelCreated = true
   }
-  console.log(hotel)
   return hotel;
 }
 
-const instantiateManager = () => {
-  manager = new Manager('manager', getTodaysDate());
+export const instantiateManager = () => {
+  if (!managerCreated) {
+    manager = new Manager('manager', getTodaysDate());
+    managerCreated = true;
+  }
+  return manager
 }
 
 const onBookThisCabinSelect = async (event) => {
-  await postNewBookingToAPI(event);
+  if (managerCreated === false) {
+    await postNewBookingToAPI(event);
+  } else {
+    await postNewBookingToAPIHelper(event, manager.managersCustomer);
+  }
   const response = await fetchBookingData();
   hotel.setBookings(response.bookings);
   signedInUser.findAllBookings();
+  signedInUser.calculateTotalSpent();
+  domUpdates.displayCustomerWelcomeScreen(signedInUser)
   domUpdates.populatePastFutureReservations(signedInUser);
   domUpdates.goBackToCustomerSearch();
+}
+
+const onDeleteBookingSelect = event => {
+  let bookingId = event.currentTarget.id;
+  deleteBookingFromAPI(bookingId);
+  window.alert(`Your booking of id:${bookingId} was removed.`)
+}
+
+const deleteBookingFromAPI = i => {
+  return fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings', {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      id: i
+    })
+  })
 }
 
 export const hideOrShowElement = (command, element) => {
   if (command === 'hide') {
     $(`${element}`).addClass('hidden');
-  } else if (command === 'show'){
+  } else if (command === 'show') {
     $(`${element}`).removeClass('hidden');
   }
 }
 
-export const giveUser = () => {
+export const giveCustomer = () => {
   return signedInUser;
 }
 
@@ -159,3 +194,4 @@ $('.sign-in-button').click(checkSignInStatus);
 $('.select-date-button').click(domUpdates.displayCustomerSearchResults);
 $('.new-search-button').click(domUpdates.goBackToCustomerSearch);
 $('.available-res-card-area').on('click', '.book-this-cabin-button', onBookThisCabinSelect);
+$('.past-future-container-manager').on('click', '.delete-booking-button', onDeleteBookingSelect);

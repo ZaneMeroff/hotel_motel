@@ -2,13 +2,15 @@ import $ from 'jquery';
 import Customer from './customer.js';
 import Hotel from './hotel.js';
 import domUpdates from './domUpdates.js';
+import {instanciateHotel} from './index.js';
 
 class Manager extends Customer {
   constructor(name, date) {
-    super();
+    super(0, name, date);
     this.name = name;
     this.todaysTotalRevenue = 0;
     this.todaysDate = date;
+    this.managersCustomer = null;
   }
 
   calculateTodaysTotalRevenue(hotel) {
@@ -24,6 +26,19 @@ class Manager extends Customer {
     }, 0).toFixed(2);
   }
 
+  instantiateCustomerFromSearch() {
+    let selectedUser = $('.user-search-input').val();
+    let hotel = instanciateHotel();
+
+    let targetUser = hotel.allUsers.find(user => {
+      return user.name === selectedUser;
+    })
+    let customer = new Customer(targetUser.id, targetUser.name, hotel.date)
+    customer.findAllBookings();
+    customer.calculateTotalSpent();
+    this.managersCustomer = customer;
+    return customer;
+  }
 
 }
 

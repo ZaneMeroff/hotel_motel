@@ -25,7 +25,6 @@ class Hotel {
     })
   }
 
-
   findTodaysBookings() {
     this.roomsBookedToday = this.bookings.filter(booking => {
       if (booking.date === this.date) {
