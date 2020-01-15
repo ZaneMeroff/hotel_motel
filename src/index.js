@@ -1,7 +1,6 @@
 import $ from 'jquery';
 import './css/base.scss';
-import './css/customer_styles.scss';
-import './css/manager_styles.scss';
+import './css/customer_manager_styles.scss';
 import Hotel from './hotel.js';
 import Customer from './customer.js';
 import Manager from './manager.js';
@@ -49,30 +48,38 @@ const getTodaysDate = () => {
 
 const checkSignInStatus = () => {
   let userIdNumber;
-  // = $('#username').val().split('r')[1]
-  if ($('#username').val().split('r')[0] === 'custome') {
+  if ($('#username').val().split('r')[0] === 'custome'
+    && $('#password').val() === 'overlook19') {
     userIdNumber = parseInt($('#username').val().split('r')[1])
     instanciateHotel();
     instanciateCustomer(userIdNumber);
-    domUpdates.displayCustomerWelcomeScreen(signedInUser);
-    domUpdates.populatePastFutureReservations(signedInUser);
-    hideOrShowElement('show', '.past-future-container, .book-a-cabin-container, .log-out-button, .user-validation');
-    hideOrShowElement('hide', '.landing-container');
-    $(".date-input").attr("min", getTodaysDate().split('/').join('-'));
+    loadCustomerDash();
   } else if ($('#username').val() === 'manager' && $('#password').val() === 'overlook19') {
     instanciateHotel();
     instantiateManager();
-    hotel.findTodaysBookings();
-    hotel.calculateTotalOccupancy();
-    hotel.findRoomsAvailableToday();
-    manager.calculateTodaysTotalRevenue(hotel);
-    domUpdates.populateAvailableRoomsForManager(hotel);
-    domUpdates.displayManagerDashboard(manager, hotel);
-    hideOrShowElement('hide', '.landing-container');
-    hideOrShowElement('show', '.log-out-button, .search-users-container, .manager-available-res-container');
+    loadManagerDash();
   } else {
     hideOrShowElement('show', '.user-validation');
   }
+}
+
+const loadCustomerDash = () => {
+  domUpdates.displayCustomerWelcomeScreen(signedInUser);
+  domUpdates.populatePastFutureReservations(signedInUser);
+  hideOrShowElement('show', '.past-future-container, .book-a-cabin-container, .log-out-button, .user-validation');
+  hideOrShowElement('hide', '.landing-container');
+  $(".date-input").attr("min", getTodaysDate().split('/').join('-'));
+}
+
+const loadManagerDash = () => {
+  hotel.findTodaysBookings();
+  hotel.calculateTotalOccupancy();
+  hotel.findRoomsAvailableToday();
+  manager.calculateTodaysTotalRevenue(hotel);
+  domUpdates.populateAvailableRoomsForManager(hotel);
+  domUpdates.displayManagerDashboard(manager, hotel);
+  hideOrShowElement('hide', '.landing-container');
+  hideOrShowElement('show', '.log-out-button, .search-users-container, .manager-available-res-container');
 }
 
 const postNewBookingToAPIHelper = async (event, user) => {
@@ -133,7 +140,7 @@ export const instantiateManager = () => {
     manager = new Manager('manager', getTodaysDate());
     managerCreated = true;
   }
-  return manager
+  return manager;
 }
 
 const onBookThisCabinSelect = async (event) => {
@@ -146,7 +153,7 @@ const onBookThisCabinSelect = async (event) => {
   hotel.setBookings(response.bookings);
   signedInUser.findAllBookings();
   signedInUser.calculateTotalSpent();
-  domUpdates.displayCustomerWelcomeScreen(signedInUser)
+  domUpdates.displayCustomerWelcomeScreen(signedInUser);
   domUpdates.populatePastFutureReservations(signedInUser);
   domUpdates.goBackToCustomerSearch();
 }
@@ -154,7 +161,7 @@ const onBookThisCabinSelect = async (event) => {
 const onDeleteBookingSelect = event => {
   let bookingId = event.currentTarget.id;
   deleteBookingFromAPI(bookingId);
-  window.alert(`Your booking of id:${bookingId} was removed.`)
+  window.alert(`Your booking of id: ${bookingId} was removed. Please refresh page to view updated information.`);
 }
 
 const deleteBookingFromAPI = i => {
@@ -185,12 +192,18 @@ export const giveManager = () => {
   return manager;
 }
 
+const managerDashHelper = () => {
+  domUpdates.displayManagerDashboard(manager, hotel)
+  domUpdates.goBackToManagerDash()
+}
+
 // On Page Load
 getData()
 getTodaysDate()
 
 // Event Listeners
 $('.sign-in-button').click(checkSignInStatus);
+$('.go-back-button').click(managerDashHelper);
 $('.select-date-button').click(domUpdates.displayCustomerSearchResults);
 $('.new-search-button').click(domUpdates.goBackToCustomerSearch);
 $('.available-res-card-area').on('click', '.book-this-cabin-button', onBookThisCabinSelect);

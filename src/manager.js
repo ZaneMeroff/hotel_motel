@@ -18,10 +18,11 @@ class Manager extends Customer {
       return booking.date === this.todaysDate;
     })
     this.todaysTotalRevenue = todaysBookings.reduce((acc, book) => {
-    hotel.rooms.forEach(room => {
-      if (room.number === book.roomNumber) {
-        acc += room.costPerNight;
-      }})
+      hotel.rooms.forEach(room => {
+        if (room.number === book.roomNumber) {
+          acc += room.costPerNight;
+        }
+      })
       return acc;
     }, 0).toFixed(2);
   }
@@ -29,7 +30,6 @@ class Manager extends Customer {
   instantiateCustomerFromSearch() {
     let selectedUser = $('.user-search-input').val();
     let hotel = instanciateHotel();
-
     let targetUser = hotel.allUsers.find(user => {
       return user.name === selectedUser;
     })
@@ -41,16 +41,5 @@ class Manager extends Customer {
   }
 
 }
-
-
-
-
-
-
-
-
-
-
-
 
 export default Manager;

@@ -1,105 +1,52 @@
-# Webpack Starter Kit
+# Cabin in the Woods
+a cozy series of cabins for managers and customers
 
-## Clone This Repo
+### Introduction
+This was my last solo project from Mod2 at Turing School of Software & Design. I had seven days to build the app. It is a dashboard interface that allows either a customer to log in or a manager. If logged in as one of 50 customers, the user has the ability to view their past and future bookings, total spent, todays date, and search through availability filters to select a cabin to request a reservation. If logged in as a manager, the user may view the total occupancy, todays date, total revenue for the day, and search for a specific customer by name. Once a customer is selected, the manager may see all their bookings, delete their bookings, or make a new booking for the selected guest.
 
-That's right, _clone_ not fork. You will use this repo multiple times, but you can only fork a repository once. So here is what you need to do to clone the repo and still be able to push changes to your repo:
+The app worked by fetching room, user, and booking information from an API on Heroku. The app also utilized the `fetch()` function to make post requests for new bookings as well as delete bookings. A testing suite was also created to accurately test each class (hotel, customer, manager) and all their methods.
 
-1. Clone down this repo. Since you don't want to name your project "webpack-starter-kit", you can use an optional argument when you run `git clone` (you replace the `[...]` with the terminal command arguments): `git clone [remote-address] [what you want to name the repo]`
-1. Remove the default remote: `git remote rm origin` (notice that `git remote -v` not gives you back nothing)
-1. Create a new repo on GitHub with the name of `[what you want to name the repo]` to be consistent with naming
-1. Copy the address that you would use to clone down this repo - something like `git@github.com:...`
-1. Add this remote to your cloned down repo: `git remote add origin [address you copied in the previous step]` - do not include the brackets
 
-Now try to commit something and push it up to your new repo. If everything is setup correctly, you should see the changes on GitHub.
+### Screenshots
+![screenshot 1](https://user-images.githubusercontent.com/53405028/72434146-207e0180-3758-11ea-9564-629fc74304b0.png)
 
-## Setup
+![screenshot 2](https://user-images.githubusercontent.com/53405028/72434172-2ecc1d80-3758-11ea-8c34-165685b51b95.png)
 
-After one person has gone through the steps of cloning down this repo and editing the remote, everyone should clone down the repo. 
+![screenshot 3](https://user-images.githubusercontent.com/53405028/72434187-38558580-3758-11ea-8226-0fa9365c787c.png)
 
-Then install the library dependencies. Run:
+![screenshot 4](https://user-images.githubusercontent.com/53405028/72434201-3ee3fd00-3758-11ea-9e5c-181be0eaf5f5.png)
 
-```bash
-npm install
-```
+### Directions for Use
+- There are 50 different customer profiles that can be logged in.
+- Use the usernames range from `customer1` through `customer50`.
+- The username to log in as a manager is `manager`.
+- The password for all customers and managers is `overlook2019`.
 
-To verify that it is setup correctly, run `npm start` in your terminal. Go to `http://localhost:8080/` and you should see a page with some `h1` text and a pink background. If that's the case, you're good to go. Enter `control + c` in your terminal to stop the server at any time.
+### Project Learning Goals  
+  1. Write a program from scratch
+  2. Synthesize knowledge of OOP, classes, and JS fundamentals to create a playable game
+  3. Demonstrate good GitHub collaboration and workflow within a large group
+  4. Write modular, reusable code that follows SRP (Single Responsibility Principle)
+  5. Create a robust test suite that thoroughly tests all functionality of a client-side application
+  6. Implement array iterator and mutator methods to work with game data
 
-## Where to Add Your Code
+### Technologies Used
+- HTML
+- CSS & SASS
+- vanilla JavaScript
+- jQuery
+- NPM
+- Chai Spies
+- WebPack
 
-### JavaScript
+### How to run on a local machine
+1. clone down the repo to desired location
+2. cd to the directory where you cloned the repo
+3. run `npm install`
+4. run `npm start`
+5. look for text "project is running at `http://localhost...`" and copy this url address
+6. open your browser and paste the live server URL into the address bar
+7. May the Force be with You!
 
-You have to be very intentional with where you add your feature code. This repo uses a tool called [webpack](https://webpack.js.org/) to combine many JavaScript files into one big file. Webpack enables you to have many, separate JavaScript files to keep your code organized and readable. Webpack expects all of your code files to be in a specific place, or else it doesn't know how to combine them all behind the scenes.
-
-**Create all of your feature code files in the `src` directory.**
-
-Since code is separated into multiple files, you need to use the `import` and `export` syntax to share code across file.
-
-Here is a video that walks through some information about [import and export](https://www.youtube.com/watch?v=_3oSWwapPKQ). There are a lot of resources out there about `import` and `export`, and resources will sometimes call them `ES6 modules`. It's something you will see in React and beyond.
-
-### HTML
-
-Add the HTML you need in the `index.html` file in the `./src` directory. There is some boilerplate HTML that exists from the start that you can modify.
-
-### CSS (SCSS/SASS)
-
-This project is setup to use SCSS/SASS files by default instead of your regular CSS files. Add your SCSS files in the `src/css` directory. There is a `base.scss` file already there, but you can change this file and add multiple SCSS files in this directory.
-
-This might sound weird, but you need to `import` your SCSS files in the JavaScript entry file (`index.js`) for the styles to be applied to your HTML. The example `base.scss` file has already been imported in the JavaScript entry file as an example.
-
-### Images
-
-Add your image files in the `src/images` directory. Similar to CSS files, you need to `import` image files in the JavaScript entry file (`index.js`). Then go into the HTML and add an `img` element with the `src` attribute pointing to the `images` directory. There is an example in the `index.html` file for you to see.
-
-## How to View Your Code in Action
-
-In the terminal, run:
-
-```bash
-npm start
-```
-
-You will see a bunch of lines output to your terminal. One of those lines will be something like:
-
-```bash
-Project is running at http://localhost:8080/
-```
-
-Go to `http://localhost:8080/` in your browser to view your code running in the browser.
-
----
-
-## Test Files Organization
-
-Similar to feature code, your test code needs to be put in a specific place for it to run successfully.
-
-**Put all of your test files in the `test` directory.** As a convention, all test filenames should end with `-test.js`. For instance: `box-test.js`.
-
-## Running Your Tests
-
-Run your test suite using the command:
-
-```bash
-npm test
-```
-
-The test results will output to the terminal.
-
----
-
-## Linting Your Code
-
-Run the command in your terminal `npm run lint` to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit - the linter is still running successfully.
-
-Your linter will look at the JavaScript files you have within the `src` directory and the `test` directory. 
-
-## Webpack?
-
-If you look in the `package.json` file, you'll see one of the library dependencies called `webpack`. If you're interested in learning more about what Webpack is and how it works behind the scenes, take a look through the [Webpack configuration documentation](https://webpack.js.org/concepts/).
-
-## Deploying to GitHub Pages
-
-_If you are finished with the functionality and testing of your project_, then you can consider deploying your project to the web! This way anyone can play it without cloning down your repo.
-
-[GitHub Pages](https://pages.github.com/) is a great way to deploy your project to the web. Don't worry about this until your project is free of bugs and well tested!
-
-If you _are_ done, you can follow [this procedure](./gh-pages-procedure.md) to get your project live on GitHub Pages.
+### This project was created solely by:
+Zachary Nemeroff https://github.com/ZaneMeroff

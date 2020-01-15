@@ -28,25 +28,15 @@ class Hotel {
   findTodaysBookings() {
     this.roomsBookedToday = this.bookings.filter(booking => {
       if (booking.date === this.date) {
-      return booking;
+        return booking;
       }
     })
   }
 
   calculateTotalOccupancy() {
-  this.totalOccupancy = Math.floor((this.roomsBookedToday.length / 25) * 100)
+    this.totalOccupancy = Math.floor((this.roomsBookedToday.length / 25) * 100)
   }
 
 }
-
-
-
-
-
-
-
-
-
-
 
 export default Hotel;

@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="en-US">
-
 <head>
   <title>Cabin in the Woods</title>
   <link href="https://fonts.googleapis.com/css?family=Special+Elite&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet">
 </head>
-
 <body>
-
   <main>
-
     <nav>
       <button type="button" class="new-search-button hidden">new search</button>
       <button type="button" class="go-back-button hidden">go back</button>
@@ -17,34 +14,29 @@
       <h2 class="h2-heading">a JW Marriott Product</h2>
       <button type="button" class="log-out-button hidden">logout</button>
     </nav>
-
-
     <section class="main-area">
-
       <div class="past-future-container hidden">
         <div class="past-future-heading">
           <h2>past & future reservations</h2>
         </div>
         <div class="past-future-card-area"></div>
       </div>
-
       <div class="book-a-cabin-container hidden">
         <div class="past-future-heading">
           <h2>book a new reservation</h2>
         </div>
         <div class="select-dates-container">
           <input type="date" class="date-input">
-            <select class="room-type-dropdown">
-              <option selected value="">filter room type</option>
-              <option value="suite">suite</option>
-              <option value="single room">single room</option>
-              <option value="residential suite">residential suite</option>
-              <option value="junior suite">junior suite</option>
-            </select>
+          <select class="room-type-dropdown">
+            <option selected value="">filter room type</option>
+            <option value="suite">suite</option>
+            <option value="single room">single room</option>
+            <option value="residential suite">residential suite</option>
+            <option value="junior suite">junior suite</option>
+          </select>
           <button type="button" class="select-date-button">select date</button><br>
         </div>
       </div>
-
       <div class="landing-container">
         <div class="sign-in-container">
           <div class="sign-in-block">
@@ -59,7 +51,6 @@
         <button type="button" class="sign-in-button">sign in</button>
         <p class="user-validation hidden">*enter a valid username and/or password</p>
       </div>
-
       <div class="search-users-container hidden">
         <h2 class="search-user-database-heading">search user database</h2>
         <input type="text" class="user-search-input" value="Louisa Homenick" placeholder="enter user's name">
@@ -67,7 +58,6 @@
         <h2>today's total occupancy:</h2>
         <h2 class="total-occupancy"></h2>
       </div>
-
       <div class="available-res-container hidden">
         <div class="past-future-heading">
           <h2>available cabins</h2>
@@ -77,95 +67,19 @@
         </div>
         <div class="available-res-card-area"></div>
       </div>
-
       <div class="manager-available-res-container hidden">
         <div class="past-future-heading">
           <h2>available cabins today</h2>
         </div>
         <div class="manager-past-future-card-area"></div>
       </div>
-
       <div class="past-future-container-manager hidden">
         <div class="past-future-heading">
           <h2>past & future reservations</h2>
         </div>
         <div class="manager-past-future-card-area-delete"></div>
       </div>
-
-      <!-- <div class="make-booking-for-this-guest-container hidden">
-        <div class="past-future-heading">
-          <h2>make booking for this guest</h2>
-        </div>
-        <div class="past-future-card-area">
-          <div class="available-res-card">
-            <div class="cabin-stats-container">
-              <h2>Cabin: #7</h2>
-              <h2>Number of Beds: 2</h2>
-              <h2>Bed Size: queen</h2>
-              <h2>Bidet: true</h2>
-              <h2>Cost: $203.29</h2>
-            </div>
-            <button type="button" class="book-this-cabin-button">book this cabin</button>
-          </div>
-          <div class="available-res-card">
-            <div class="cabin-stats-container">
-              <h2>Cabin: #12</h2>
-              <h2>Number of Beds: 1</h2>
-              <h2>Bed Size: king</h2>
-              <h2>Bidet: false</h2>
-              <h2>Cost: $198.43</h2>
-            </div>
-            <button type="button" class="book-this-cabin-button">book this cabin</button>
-          </div>
-          <div class="available-res-card">
-            <div class="cabin-stats-container">
-              <h2>Cabin: #16</h2>
-              <h2>Number of Beds: 2</h2>
-              <h2>Bed Size: queen</h2>
-              <h2>Bidet: true</h2>
-              <h2>Cost: $134.26</h2>
-            </div>
-            <button type="button" class="book-this-cabin-button">book this cabin</button>
-          </div>
-          <div class="available-res-card">
-            <div class="cabin-stats-container">
-              <h2>Cabin: #7</h2>
-              <h2>Number of Beds: 2</h2>
-              <h2>Bed Size: queen</h2>
-              <h2>Bidet: true</h2>
-              <h2>Cost: $203.29</h2>
-            </div>
-            <button type="button" class="book-this-cabin-button">book this cabin</button>
-          </div>
-          <div class="available-res-card">
-            <div class="cabin-stats-container">
-              <h2>Cabin: #12</h2>
-              <h2>Number of Beds: 1</h2>
-              <h2>Bed Size: king</h2>
-              <h2>Bidet: false</h2>
-              <h2>Cost: $198.43</h2>
-            </div>
-            <button type="button" class="book-this-cabin-button">book this cabin</button>
-          </div>
-          <div class="available-res-card">
-            <div class="cabin-stats-container">
-              <h2>Cabin: #16</h2>
-              <h2>Number of Beds: 2</h2>
-              <h2>Bed Size: queen</h2>
-              <h2>Bidet: true</h2>
-              <h2>Cost: $134.26</h2>
-            </div>
-            <button type="button" class="book-this-cabin-button">book this cabin</button>
-          </div>
-        </div>
-      </div> -->
-
-
     </section>
-
   </main>
-
-
 </body>
-
 </html>

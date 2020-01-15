@@ -1,36 +1,40 @@
-$menu-grey:rgba(139, 137, 132, 0.7);
+$menu-grey: rgba(139, 137, 132, 0.7);
+@mixin flex-setup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 * {
   color: white;
-  margin: 0px;
-  font-family: Special Elite;
+  font-family: Varela Round;
+  margin: 0;
 }
 
 h1 {
+  font-family: Special Elite;
   font-size: 270%;
+  margin-top: 1%;
 }
 
 h2 {
-  margin: 1%;
   font-size: 110%;
   width: auto;
 }
 
 main {
-  background: center url('../images/brokenCabin.jpg');
-  height: 100vh;
-  background-size: cover;
+  background: center url("../images/brokenCabin.jpg");
   background-attachment: fixed;
+  background-size: cover;
+  height: 100vh;
 }
 
 nav {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  height: 100px;
-  width: 100vw;
+  @include flex-setup;
   background-color: $menu-grey;
+  height: 100px;
+  text-align: center;
+  width: 100vw;
 }
 
 .main-area {
@@ -39,26 +43,24 @@ nav {
 }
 
 .landing-container {
-  margin-top: 12%;
-  display: flex;
+  @include flex-setup;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
   background-color: $menu-grey;
-  width: 30%;
-  height: 160px;
   border-radius: 5px;
   box-shadow: 3px 3px 10px 3px #000000;
+  height: 160px;
+  margin-top: 12%;
+  width: 30%;
 }
 
-#username,
-#password {
-  color: black;
-  width: 80%;
-  height: 60%;
+#password,
+#username {
   border-radius: 5px;
-  padding-left: 4%;
+  color: black;
   font-size: 90%;
+  height: 60%;
+  padding-left: 4%;
+  width: 80%;
 }
 
 label {
@@ -66,8 +68,8 @@ label {
 }
 
 .sign-in-container {
-  margin: 2%;
   display: flex;
+  margin: 2%;
 }
 
 .sign-in-block {
@@ -75,21 +77,21 @@ label {
 }
 
 .book-this-cabin-button,
-.new-search-button,
 .go-back-button,
 .log-out-button,
+.new-search-button,
 .sign-in-button {
+  border-radius: 5px;
   color: #000000;
-  width: 90%;
   height: 16%;
   margin: 1%;
-  border-radius: 5px;
+  width: 90%;
 }
 
 .book-this-cabin-button {
-  width: 25%;
   height: 30%;
   margin: 10% 3% 3% 17%;
+  width: 25%;
 }
 
 .book-this-cabin-button:hover,
@@ -98,30 +100,34 @@ label {
   cursor: pointer;
 }
 
-.new-search-button,
+.sign-in-button {
+  width: 85%;
+}
+
 .go-back-button,
-.log-out-button {
-  position: absolute;
-  top: 3%;
-  right: 4%;
-  width: 70px;
+.log-out-button,
+.new-search-button {
   height: 30px;
+  position: absolute;
+  right: 4%;
+  top: 3%;
+  width: 70px;
 }
 
-.new-search-button,
-.go-back-button {
-  right: 0%;
+.go-back-button,
+.new-search-button {
   left: 4%;
+  right: 0;
 }
 
-.new-search-button:hover,
-.go-back-button:hover {
+.go-back-button:hover,
+.new-search-button:hover {
   cursor: pointer;
 }
 
 .user-validation {
-  margin: 2%;
   background-color: rgba(139, 137, 132, 0.9);
+  margin: 2%;
 }
 
 .hidden {
