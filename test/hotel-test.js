@@ -118,32 +118,32 @@ describe('Hotel', () => {
           date: '2020/01/10',
           roomNumber: 6,
           roomServiceCharges: []
-        }])
+        }]);
         expect(hotel.bookings.length).to.equal(1);
-      })
+      });
 
-    })
+    });
 
     describe('findRoomsAvailableToday', () => {
 
       it('should be able to find rooms available today', () => {
         expect(hotel.roomsAvailableToday.length).to.equal(0);
-        hotel.findTodaysBookings()
-        hotel.findRoomsAvailableToday()
+        hotel.findTodaysBookings();
+        hotel.findRoomsAvailableToday();
         expect(hotel.roomsAvailableToday.length).to.equal(2);
-      })
+      });
 
-    })
+    });
 
     describe('findTodaysBookings', () => {
 
       it('should be able to find todays bookings', () => {
         expect(hotel.roomsBookedToday.length).to.equal(0);
-        hotel.findTodaysBookings()
+        hotel.findTodaysBookings();
         expect(hotel.roomsBookedToday.length).to.equal(1);
-      })
+      });
 
-    })
+    });
 
     describe('calculateTotalOccupancy', () => {
 
@@ -154,7 +154,7 @@ describe('Hotel', () => {
         hotel.calculateTotalOccupancy();
         expect(hotel.totalOccupancy).to.equal(4);
 
-      })
+      });
 
     });
 
