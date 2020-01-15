@@ -73,7 +73,7 @@ describe('Customer', () => {
 
   })
 
-  describe('default properties of hotel', () => {
+  describe('default properties of customer', () => {
 
     it('should be an object', () => {
       expect(customer).to.be.a('object');
