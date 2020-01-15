@@ -6,7 +6,7 @@ import Customer from './customer.js';
 import Manager from './manager.js';
 import domUpdates from './domUpdates.js';
 
-let hotel, manager, signedInUser;
+let hotel, manager, signedInUser, customer;
 let hotelCreated = false;
 let managerCreated = false;
 let allData = {};
@@ -53,6 +53,7 @@ const checkSignInStatus = () => {
     userIdNumber = parseInt($('#username').val().split('r')[1])
     instanciateHotel();
     instanciateCustomer(userIdNumber);
+    signedInUser.clearOutAvailableRooms(hotel)
     loadCustomerDash();
   } else if ($('#username').val() === 'manager' && $('#password').val() === 'overlook19') {
     instanciateHotel();
@@ -123,8 +124,8 @@ const instanciateCustomer = id => {
     }
   })
   signedInUser = new Customer(selectedUser.id, selectedUser.name, hotel.date)
-  signedInUser.findAllBookings()
-  signedInUser.calculateTotalSpent()
+  signedInUser.findAllBookings(hotel)
+  signedInUser.calculateTotalSpent(hotel)
 }
 
 export const instanciateHotel = () => {
@@ -146,15 +147,23 @@ export const instantiateManager = () => {
 const onBookThisCabinSelect = async (event) => {
   if (managerCreated === false) {
     await postNewBookingToAPI(event);
+    signedInUser.findAllBookings(hotel);
   } else {
     await postNewBookingToAPIHelper(event, manager.managersCustomer);
+    manager.managersCustomer.findAllBookings(hotel);
+    // ^ needs to be customer.findAllBookings()
   }
   const response = await fetchBookingData();
   hotel.setBookings(response.bookings);
-  signedInUser.findAllBookings();
-  signedInUser.calculateTotalSpent();
-  domUpdates.displayCustomerWelcomeScreen(signedInUser);
-  domUpdates.populatePastFutureReservations(signedInUser);
+  if (signedInUser) {
+    signedInUser.calculateTotalSpent(hotel);
+    domUpdates.displayCustomerWelcomeScreen(signedInUser);
+    domUpdates.populatePastFutureReservations(signedInUser);
+  } else {
+    domUpdates.displayCustomerWelcomeScreen(manager.managersCustomer);
+    domUpdates.populatePastFutureReservations(manager.managersCustomer);
+    manager.managersCustomer.calculateTotalSpent(hotel);
+  }
   domUpdates.goBackToCustomerSearch();
 }
 
@@ -191,6 +200,11 @@ export const giveCustomer = () => {
 export const giveManager = () => {
   return manager;
 }
+
+// const giveManagersCustomer = () => {
+//   // return customer
+//
+// }
 
 const managerDashHelper = () => {
   domUpdates.displayManagerDashboard(manager, hotel)
