@@ -1,0 +1,170 @@
+$menu-grey: rgba(139, 137, 132, 0.7);
+@mixin flex-setup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+* {
+  color: white;
+  margin: 0;
+}
+
+.available-res-container,
+.book-a-cabin-container,
+.make-booking-for-this-guest-container,
+.manager-available-res-container,
+.past-future-container,
+.past-future-container-manager,
+.search-users-container {
+  background-color: $menu-grey;
+  border-radius: 5px;
+  box-shadow: 3px 3px 10px 3px #000000;
+  height: 400px;
+  margin: 5%;
+  overflow: scroll;
+  width: 30%;
+}
+
+.user-search-input {
+  border-radius: 5px;
+  color: #000000;
+  height: 27px;
+  margin-top: 4%;
+  padding-left: 3%;
+  width: 50%;
+}
+
+.total-occupancy {
+  font-size: 200%;
+  margin: 4%;
+}
+
+.search-users-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.book-a-cabin-container {
+  overflow: visible;
+}
+
+.past-future-heading {
+  margin: 3%;
+  text-align: center;
+}
+
+.available-res-card-area,
+.manager-past-future-card-area,
+.manager-past-future-card-area-delete,
+.past-future-card-area {
+  @include flex-setup;
+  align-items: center;
+}
+
+.available-res-card,
+.manager-past-future-card,
+.past-future-card {
+  background-color: rgba(139, 137, 132, 0.9);
+  border-radius: 5px;
+  height: auto;
+  margin: 1%;
+  width: 90%;
+}
+
+.manager-past-future-card {
+  display: flex;
+}
+
+.available-res-card {
+  display: flex;
+  height: 130px;
+}
+
+.cabin-stats-container {
+  height: auto;
+  padding: 1%;
+  width: 100%;
+}
+
+.delete-booking-button,
+.possible-dates-dropdown,
+.search-users-button,
+.select-date-button {
+  border-radius: 5px;
+  color: #000000;
+  font-size: 80%;
+  height: 30px;
+  width: 30%;
+}
+
+.delete-booking-button {
+  margin: 25% 20% 20% 80%;
+  width: 100%;
+}
+
+.delete-booking-button:hover {
+  cursor: pointer;
+}
+
+.search-users-button {
+  margin: 4%;
+  width: 54%;
+}
+
+.search-users-button:hover {
+  cursor: pointer;
+}
+
+.possible-dates-dropdown:hover,
+.select-date-button:hover {
+  cursor: pointer;
+}
+
+.select-dates-container {
+  @include flex-setup;
+  align-items: center;
+}
+
+.select-date-button {
+  margin: 3%;
+  width: 42%;
+}
+
+.room-type-dropdown {
+  margin: 6% 6% 3%;
+  width: 42%;
+}
+
+.radio-button {
+  font-size: 100%;
+  margin: 3%;
+}
+
+.search-user-database-heading {
+  margin-top: 3%;
+}
+
+.date-input {
+  border-radius: 5px;
+  color: #000000;
+  font-size: 90%;
+  height: 27px;
+  margin-top: 9%;
+  padding-left: 4%;
+  width: 37%;
+}
+
+.customer-no-results-error {
+  margin-top: 4%;
+}
+
+.room-type-dropdown {
+  color: #000000;
+  height: 30px;
+}
+
+.hidden {
+  display: none;
+}
