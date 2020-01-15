@@ -2,6 +2,7 @@ import $ from 'jquery';
 import Customer from './customer.js';
 import Hotel from './hotel.js';
 import domUpdates from './domUpdates.js';
+import {instanciateHotel} from './index.js';
 
 class Manager extends Customer {
   constructor(name, date) {
@@ -22,6 +23,17 @@ class Manager extends Customer {
       }})
       return acc;
     }, 0).toFixed(2);
+  }
+
+  instantiateCustomerFromSearch() {
+    let selectedUser = $('.user-search-input').val();
+    let hotel = instanciateHotel();
+    console.log(hotel);
+    let targetUser = hotel.allUsers.find(user => {
+      return user.name === selectedUser
+    })
+    let customer = new Customer(selectedUser.id, selectedUser.name, hotel.date)
+    console.log(customer);
   }
 
 
