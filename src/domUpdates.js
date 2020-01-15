@@ -2,6 +2,8 @@ import $ from 'jquery';
 import Customer from './customer.js'
 import {hideOrShowElement} from './index.js';
 import {giveUser} from './index.js';
+import {instantiateManager} from './index.js';
+import {instanciateHotel} from './index.js';
 
 const domUpdates = {
 
@@ -32,6 +34,9 @@ const domUpdates = {
   },
 
   displayManagerViewOfSelectedCustomer: $('.search-users-button').on('click', () => {
+    let manager = instantiateManager();
+    let hotel = instanciateHotel();
+    manager.instantiateCustomerFromSearch(hotel);
     hideOrShowElement('hide', '.search-users-container, .manager-available-res-container');
     hideOrShowElement('show', '.past-future-container-manager, .make-booking-for-this-guest-container, .go-back-button');
   }),
